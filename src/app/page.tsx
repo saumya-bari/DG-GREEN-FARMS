@@ -199,13 +199,13 @@ export default function App() {
   ];
 
   const scrollingImages = [
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", category: "MASTER ESTATE SECTION" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", category: "CULINARY EXPERIENCE" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg", title: "Surprise Romantic Decor", category: "BESPOKE ANNIVERSARIES" },
     { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004639/t3_hp3s6m.jpg", title: "Repose Swing Sanctuary", category: "GARDEN SWING REPRIEVES" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg", title: "Surprise Romantic Decor", category: "BESPOKE ANNIVERSARIES" },
     { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t5_oyvkbx.jpg", title: "Bespoke Celebration Lawns", category: "ESTATE GROUNDS" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg", title: "Midnight Jacuzzi Glow", category: "NIGHT EXPERIENCE" },
     { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004637/t6_yf6uq3.jpg", title: "Heated Wellness Haven", category: "SPA & WELLNESS" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg", title: "Midnight Jacuzzi Glow", category: "NIGHT EXPERIENCE" }
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", category: "MASTER ESTATE SECTION" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", category: "CULINARY EXPERIENCE" }
   ];
 
   const filteredImages = selectedCategory === "All"
@@ -395,15 +395,20 @@ export default function App() {
 
       {/* See the Beauty - Scrolling Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="captured-moments">
+        {/* Editorial Header */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
         </div>
         
         <div className="relative w-full overflow-hidden">
+          {/* Subtle gradient feathering on left/right edges for exquisite high-end editorial feel */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#040906] to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#040906] to-transparent z-20 pointer-events-none" />
+
           <motion.div 
             className="flex gap-6 w-max"
-            animate={{ x: ["0%", "-50%"] }}
+            animate={{ x: ["-50%", "0%"] }}
             transition={{
               ease: "linear",
               duration: 40,
