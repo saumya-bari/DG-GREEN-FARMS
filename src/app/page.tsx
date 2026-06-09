@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -27,6 +26,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Counter from "@/components/Counter";
 import CircularGallery from "@/components/ui/CircularGallery";
 import GlareHover from "@/components/GlareHover";
+import Threads from "@/components/Threads";
 import { amenitiesList, reviewsList } from "@/app/lib/data";
 
 export default function App() {
@@ -564,8 +564,17 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#060e0a] border-t border-gold/15 pt-20 pb-12 z-10 text-left">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <footer className="relative bg-[#060e0a] border-t border-gold/15 pt-20 pb-12 z-10 text-left overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+          <Threads
+            color={[0.788, 0.659, 0.298]}
+            amplitude={1.2}
+            distance={0.1}
+            enableMouseInteraction={true}
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
             <div className="col-span-1 md:col-span-1 space-y-6">
               <div className="flex items-center gap-3">
