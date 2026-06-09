@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Flame, Waves, Sparkles } from "lucide-react";
+import ShinyText from "@/components/ShinyText";
 
 interface LuxuryHeroProps {
   onBookClick: () => void;
@@ -24,7 +25,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    // Generate particles only on the client side to avoid hydration mismatch
     const generatedParticles = Array.from({ length: 22 }).map(() => ({
       width: Math.random() * 3 + 2,
       height: Math.random() * 3 + 2,
@@ -40,22 +40,18 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#021107] pt-20">
-      {/* Real background image of the twilight pool with a luxury rich overlay blend */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
         <img
           src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1920&h=1080&auto=format&fit=crop"
           alt="Luxury Private Pool Backdrop"
           className="w-full h-full object-cover opacity-35"
         />
-        {/* Cinematic rich dark gradient overlays to keep typography readable and premium */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#021107] via-[#021107]/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#021107]/50 via-transparent to-[#021107]/50" />
         
-        {/* Neon blue pool reflection glow */}
         <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-emerald-500/10 blur-[130px] opacity-70" />
         <div className="absolute top-[50%] left-1/4 w-[400px] h-[400px] rounded-full bg-teal-500/5 blur-[120px] opacity-60" />
         
-        {/* Gold thread vectors (Simulating minimalist 3D motion layouts) */}
         <svg className="absolute inset-0 w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
           <motion.path
             d="M -100 200 Q 300 400 800 150 T 1700 350"
@@ -87,7 +83,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
           />
         </svg>
 
-        {/* Liquid waves mimicking water ripples */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.18]">
           <div className="relative w-full h-full max-w-4xl max-h-[700px] flex items-center justify-center">
             <div className="absolute w-[280px] h-[280px] md:w-[480px] md:h-[480px] border border-gold/15 rounded-full liquid-pool-bg" />
@@ -96,7 +91,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
           </div>
         </div>
 
-        {/* Dynamic Sparkle/Gold floating particle animations */}
         {particles.map((p, i) => (
           <motion.div
             key={i}
@@ -122,9 +116,7 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
         ))}
       </div>
 
-      {/* Main Hero Elements */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        {/* Eyebrow badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -150,7 +142,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
           </div>
         </motion.div>
 
-        {/* Display Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 0.95, y: 0 }}
@@ -160,12 +151,18 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
         >
           Where <span className="font-serif italic text-gold text-glow">Luxury</span>
           <br />
-          <span className="font-sans font-bold tracking-tight block mt-3 text-2xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 uppercase">
-            Parties & Gatherings Blend
+          <span className="font-sans font-bold tracking-tight block mt-3 text-2xl sm:text-4xl md:text-5xl uppercase">
+            <ShinyText 
+              text="Parties & Gatherings Blend" 
+              speed={3} 
+              color="#ffffff" 
+              shineColor="#c9a84c" 
+              spread={120}
+              className="tracking-tight"
+            />
           </span>
         </motion.h1>
 
-        {/* Sub-tagline aligned with Google Map info */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 0.9, y: 0 }}
@@ -175,7 +172,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
           Indore's Perfect Destination for Celebrations, Get-togethers & Weekend Escapes
         </motion.p>
 
-        {/* Feature List/Grid pill style tags */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -200,7 +196,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
           </div>
         </motion.div>
 
-        {/* Interactive Luxury CTA Button Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -228,7 +223,6 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
         </motion.div>
       </div>
 
-      {/* Elegant scrolling prompt */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
