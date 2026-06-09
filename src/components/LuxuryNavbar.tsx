@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -22,7 +21,7 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
+    { name: "Story", href: "#about" },
     { name: "Amenities", href: "#amenities" },
     { name: "Gallery", href: "#gallery" },
     { name: "Reviews", href: "#testimonials" },
@@ -32,34 +31,34 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? 'bg-luxury-dark/90 backdrop-blur-md py-4 border-b border-gold/10' : 'bg-transparent py-8'}`}>
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 border border-gold/30 rounded-full flex items-center justify-center bg-gold/5 group-hover:bg-gold transition-all duration-500">
-             <span className="text-gold group-hover:text-luxury-dark font-serif text-lg">G</span>
-          </div>
+          <img 
+            src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" 
+            alt="DG Green Farms" 
+            className="w-10 h-10 object-cover rounded-full border border-gold/30"
+          />
           <span className="font-serif text-xl tracking-wider text-white group-hover:text-gold transition-colors duration-300 uppercase">
             DG <span className="font-light italic">Green Farms</span>
           </span>
         </a>
 
-        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-12">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-[10px] tracking-[0.3em] uppercase text-white/70 hover:text-gold transition-colors duration-300 font-medium"
+              className="text-[10px] tracking-[0.3em] uppercase text-white/70 hover:text-gold transition-colors duration-300 font-medium font-sans"
             >
               {link.name}
             </a>
           ))}
           <button
             onClick={onBookClick}
-            className="px-6 py-2.5 border border-gold text-gold text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300"
+            className="px-6 py-2.5 border border-gold text-gold text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans"
           >
             Reservations
           </button>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="lg:hidden text-gold p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -68,7 +67,6 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

@@ -41,7 +41,7 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
             DG Green <br /> <span className="italic font-light text-gold text-glow">Farms</span>
           </h1>
           
-          <p className="max-w-2xl mx-auto text-white/70 text-lg md:text-xl font-light leading-relaxed mb-12">
+          <p className="max-w-2xl mx-auto text-white/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-sans">
             A sanctuary where architectural elegance meets the raw beauty of the forest. 
             Indulge in an exclusive retreat designed for those who seek silence and luxury.
           </p>
