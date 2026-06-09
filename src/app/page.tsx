@@ -191,7 +191,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Gallery Section - EXACTLY AS REQUESTED */}
+      {/* Gallery Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>

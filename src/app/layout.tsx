@@ -68,7 +68,14 @@ const jsonLd = {
     "opens": "00:00",
     "closes": "23:59"
   },
-  "sameAs": "https://www.instagram.com/dggreenfarms"
+  "sameAs": "https://www.instagram.com/dggreenfarms",
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Private Pool", "value": "true" },
+    { "@type": "LocationFeatureSpecification", "name": "Candlelight Dinner Setups", "value": "true" },
+    { "@type": "LocationFeatureSpecification", "name": "Luxury Jacuzzi Suites", "value": "true" },
+    { "@type": "LocationFeatureSpecification", "name": "Custom Celebrations Decor", "value": "true" },
+    { "@type": "LocationFeatureSpecification", "name": "Indori organic culinary service", "value": "true" }
+  ]
 };
 
 export default function RootLayout({
@@ -87,7 +94,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased bg-luxury-dark text-[#fdfcfa]">
+      <body className="antialiased">
         {children}
       </body>
     </html>
