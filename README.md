@@ -1,40 +1,32 @@
+
 # DG Green Farms Indore — Luxury Resort & Staycation
 
 This is a premium, high-performance Next.js 15 application designed for **DG Green Farms**, a luxury boutique resort in Indore. It features immersive WebGL components, fluid animations, and a mobile-first design.
 
-## 🚀 Deployment Guide (Vercel)
+## 🚀 One-Click Deployment (Vercel)
 
-Deploying this application to Vercel is straightforward. Follow these steps:
+This application is fully optimized for Vercel and **requires NO API keys or environment variables** to run.
 
-### 1. Prepare your Repository
-If you haven't already, push your code to a Git provider (GitHub is recommended).
+### Steps to Deploy:
 
-```bash
-git init
-git add .
-git commit -m "Initial commit of DG Green Farms luxury site"
-# Create a repo on GitHub, then link it:
-git remote add origin <your-github-repo-url>
-git branch -M main
-git push -u origin main
-```
+1. **Push to GitHub**: Create a new repository on GitHub and push this code to it.
+   ```bash
+   git init
+   git add .
+   git commit -m "Final production build"
+   git remote add origin <your-repo-url>
+   git push -u origin main
+   ```
 
-### 2. Connect to Vercel
-1. Log in to [Vercel](https://vercel.com).
-2. Click **"Add New"** and select **"Project"**.
-3. Import your repository from the list.
+2. **Connect to Vercel**:
+   - Go to [Vercel.com](https://vercel.com).
+   - Click **"Add New"** -> **"Project"**.
+   - Import your GitHub repository.
 
-### 3. Project Configuration
-- **Framework Preset**: Vercel will automatically detect **Next.js**.
-- **Build Command**: `next build` (default).
-- **Output Directory**: `.next` (default).
-
-### 4. Environment Variables (Optional)
-This app is designed to work out-of-the-box without keys. However, if you choose to re-enable AI features later:
-- Add `GOOGLE_GENAI_API_KEY` in the **Environment Variables** section.
-
-### 5. Deploy
-Click **"Deploy"**. Your site will be live on a production-ready URL in less than 2 minutes.
+3. **Deploy**:
+   - Vercel will auto-detect **Next.js**.
+   - Click **"Deploy"**.
+   - Your site will be live in ~60 seconds.
 
 ---
 
@@ -42,8 +34,8 @@ Click **"Deploy"**. Your site will be live on a production-ready URL in less tha
 - **Framework**: Next.js 15 (App Router)
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
-- **Rendering**: OGL (WebGL) for interactive threads and galleries
-- **Components**: Radix UI & ShadCN UI
+- **WebGL**: OGL (for interactive threads and circular gallery)
+- **Components**: ShadCN UI & Custom Luxury Elements
 
 ## ✒️ Credits
-Developed with a focus on luxury aesthetics and performance.
+Developed with a focus on luxury aesthetics and high-end performance.
