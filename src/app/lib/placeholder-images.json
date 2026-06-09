@@ -1,0 +1,41 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-cabin",
+      "description": "Luxurious forest cabin at twilight with warm lights",
+      "imageUrl": "https://picsum.photos/seed/vl1/1920/1080",
+      "imageHint": "luxury cabin forest night"
+    },
+    {
+      "id": "amenity-pool",
+      "description": "Infinity pool overlooking a misty valley",
+      "imageUrl": "https://picsum.photos/seed/vl2/800/600",
+      "imageHint": "infinity pool luxury"
+    },
+    {
+      "id": "amenity-jacuzzi",
+      "description": "Steaming outdoor jacuzzi in a forest setting",
+      "imageUrl": "https://picsum.photos/seed/vl3/800/600",
+      "imageHint": "outdoor jacuzzi forest"
+    },
+    {
+      "id": "amenity-suite",
+      "description": "Modern deluxe master suite with floor-to-ceiling windows",
+      "imageUrl": "https://picsum.photos/seed/vl4/800/600",
+      "imageHint": "luxury bedroom suite"
+    },
+    {
+      "id": "amenity-dining",
+      "description": "Exquisite private dinner setup in a designer dining room",
+      "imageUrl": "https://picsum.photos/seed/vl5/800/600",
+      "imageHint": "fine dining room"
+    },
+    {
+      "id": "property-view",
+      "description": "Aerial view of Verdant Luxe Reserve at night",
+      "imageUrl": "https://picsum.photos/seed/vl6/1200/800",
+      "imageHint": "luxury resort night view"
+    }
+  ]
+}
