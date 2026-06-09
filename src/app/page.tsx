@@ -54,39 +54,165 @@ export default function App() {
 
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1920&h=1080&auto=format&fit=crop",
       title: "Sunset Pool Majesty",
       category: "Private Pool",
       description: "Exclusive heated pool illuminated with twilight fiber-optics under Indore's evening sky.",
-      size: "col-span-12 md:col-span-8 h-[280px] md:h-[380px]"
+      size: "col-span-12 md:col-span-8 h-[280px] md:h-[450px]"
     },
     {
-      src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop",
+      src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&h=800&auto=format&fit=crop",
       title: "Deluxe Master Sanctuary",
       category: "Luxury Suite",
       description: "Plush designer bedrooms with smart dimming lights and elegant pool-view glass panes.",
-      size: "col-span-12 md:col-span-4 h-[280px] md:h-[380px]"
+      size: "col-span-12 md:col-span-4 h-[280px] md:h-[450px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920471/D9_vxkjho.png",
       title: "Imperial Canopy Seclusion",
       category: "Romantic Decor",
       description: "A private evening setup adorned with golden accents, custom balloons, and rich red fabrics for romantic isolation.",
-      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[300px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920469/D5_ynpe38.png",
       title: "Floating Rose Serenade",
       category: "Romantic Decor",
       description: "Red rose petals floating gently on the pool water under a canopy of warm romantic fairy-lights.",
-      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[300px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D6_vvq67s.png",
       title: "Midnight Solitude Spa",
       category: "Wellness",
       description: "Warm ambient lit wellness bath designed for private evening meditation and supreme relaxation.",
+      size: "col-span-12 md:col-span-4 h-[300px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D8_v9samu.png",
+      title: "Velvet Rendezvous Setup",
+      category: "Romantic Decor",
+      description: "An opulent crimson and gold candlelit pathway welcoming couples with unmatched grandness.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920460/d1_wpnfzg.png",
+      title: "Cascading Petal Spa",
+      category: "Wellness",
+      description: "Indulgent deep-soak tub carpeted with fresh red rose petals and surrounded by ambient glowing candles.",
+      size: "col-span-12 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920447/D3_fctofk.png",
+      title: "Gourmet Evening Canopy",
+      category: "Fine Dining",
+      description: "Intimate dining experience with premium silverware, handpicked flowers, and a designated butler corner.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920446/D4_d8nz9n.png",
+      title: "Whispering Red Canopy",
+      category: "Romantic Decor",
+      description: "A dreamy poolside cabana draped in crimson and warm light, curated exclusively for timeless celebrations.",
       size: "col-span-12 md:col-span-4 h-[280px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920445/D2_myhzij.png",
+      title: "Floating Champagne Breakfast",
+      category: "Fine Dining",
+      description: "A stunning floating breakfast tray with premium champagnes and fresh treats launched on the crystal pool.",
+      size: "col-span-12 md:col-span-4 h-[280px] md:h-[340px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920436/C2_l033eb.png",
+      title: "Azure Infinity Deck",
+      category: "Private Pool",
+      description: "Crystal clear pool view extending into lush green outlines under dynamic custom illumination.",
+      size: "col-span-12 md:col-span-8 h-[280px] md:h-[340px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920418/B1_lnes8l.png",
+      title: "Presidential Retreat Suite",
+      category: "Luxury Suite",
+      description: "Bespoke king-sized chamber featuring opulent fabrics, warm backlighting, and private pool-deck access.",
+      size: "col-span-12 md:col-span-4 h-[280px] md:h-[340px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920417/A5_euuohd.png",
+      title: "Secret Palm Oasis",
+      category: "Estate View",
+      description: "Vibrant palm-covered parameters ensuring your stay is completely hidden from the outside world.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920414/B3_kie4py.png",
+      title: "Luminescent Master Bedroom",
+      category: "Luxury Suite",
+      description: "Perfectly balanced contemporary master bedroom with plush leather detailing and integrated smart home controls.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920411/A4_v4t56r.png",
+      title: "Lush Sanctuary Pathway",
+      category: "Estate View",
+      description: "Impeccably manicured green gardens and cobblestoned garden walking paths leading to the main luxury villa.",
+      size: "col-span-12 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920403/A7_vnkmdi.png",
+      title: "Symmetrical Zen Lawns",
+      category: "Estate View",
+      description: "Expertly landscaped garden vistas framed by tropical footage, showcasing the vast green luxury boundary.",
+      size: "col-span-12 md:col-span-6 h-[280px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920382/A3_sdom9l.png",
+      title: "Tropical Courtyard",
+      category: "Estate View",
+      description: "Sun-dappled pathways lined with bright magenta bougainvillea and tall palm trees.",
+      size: "col-span-12 md:col-span-6 h-[280px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920462/C1_wiinti.png",
+      title: "Reflective Evening Waters",
+      category: "Private Pool",
+      description: "Fountain jets arching into the warm water, creating a perfect sensory auditory landscape.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920376/A2_pd83ek.png",
+      title: "Majestic Palm Guarded Gate",
+      category: "Estate View",
+      description: "Tall exotic palm trees guarding the grand entry lines of the farm.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920371/A6_txpr1w.png",
+      title: "Emerald Privacy Walls",
+      category: "Estate View",
+      description: "Thick natural foliage barriers providing absolute secure visual block.",
+      size: "col-span-12 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920370/A1_d5mlfv.png",
+      title: "Grand Facade Arrival",
+      category: "Estate View",
+      description: "An monumental look of DG Green Farms' entrance, radiating pure architectural elegance.",
+      size: "col-span-12 md:col-span-8 h-[280px] md:h-[340px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920396/A8_ocq5vf.png",
+      title: "Sunlit Meadow Retreat",
+      category: "Estate View",
+      description: "Soft golden rays filtered through thick trees, illuminating a manicured lawn.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D7_bjclin.png",
+      title: "Bespoke Anniversary Alcove",
+      category: "Romantic Decor",
+      description: "An exclusive floral heart arrangement backdropped by warm string curtains.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     }
   ];
 
@@ -278,21 +404,24 @@ export default function App() {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Section - Visual Sanctuary */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">Visual Sanctuary</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">A Glimpse into <span className="italic text-gold text-glow">Pure Seclusion</span></h2>
+          <p className="mt-4 text-white/50 text-xs md:text-sm font-light max-w-2xl leading-relaxed">
+            Experience the visual serenity of DG Green Farms Indore. Every frame captures the exquisite synergy between high-end architectural craft and breathtaking organic natural settings. Click any frame to view in high definition.
+          </p>
         </div>
         
-        <div className="flex md:flex-wrap items-center gap-2 mb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto">
-          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor"].map((cat) => (
+        <div className="flex md:flex-wrap items-center gap-2 mb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto scrollbar-none">
+          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor", "Fine Dining", "Estate View"].map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:text-gold hover:border-gold/30 hover:text-gold'}`}
+              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 whitespace-nowrap ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:text-gold hover:border-gold/30'}`}
             >
-              {cat}
+              {cat === "All" ? "All Spaces" : cat}
             </button>
           ))}
         </div>
@@ -485,7 +614,7 @@ export default function App() {
               <ul className="space-y-4 text-xs text-white/60 font-light font-sans">
                 <li><a href="#about" className="hover:text-gold transition-colors uppercase tracking-widest">Story</a></li>
                 <li><a href="#amenities" className="hover:text-gold transition-colors uppercase tracking-widest">Amenities</a></li>
-                <li><a href="#gallery" className="hover:text-gold transition-colors uppercase tracking-widest">Gallery</a></li>
+                <li><a href="#gallery-section" className="hover:text-gold transition-colors uppercase tracking-widest">Gallery</a></li>
               </ul>
             </div>
             <div>
@@ -502,22 +631,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Modals */}
-      <AnimatePresence>
-        {selectedAmenityDetail && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="relative w-full max-w-lg bg-[#0a1410] border border-gold/30 p-12 shadow-2xl">
-              <button onClick={() => setSelectedAmenityDetail(null)} className="absolute top-6 right-6 text-white/70 hover:text-white transition-all"><X className="w-6 h-6" /></button>
-              <Sparkles className="w-8 h-8 text-gold mb-6" />
-              <h2 className="font-serif text-3xl font-light text-white mb-2">{selectedAmenityDetail.name}</h2>
-              <span className="text-[10px] tracking-widest text-gold uppercase mb-8 block font-sans font-semibold">{selectedAmenityDetail.tagline}</span>
-              <p className="text-white/80 leading-relaxed mb-10 text-sm font-sans font-light">{selectedAmenityDetail.description}</p>
-              <button onClick={() => handleWhatsAppContact(`Inquiry about ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark text-xs tracking-widest uppercase font-bold hover:bg-gold-light transition-colors font-sans">Inquire via WhatsApp</button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {activeLightboxImage && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-6 backdrop-blur-lg" onClick={handleCloseLightbox}>
