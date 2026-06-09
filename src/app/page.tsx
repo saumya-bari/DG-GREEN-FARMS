@@ -14,11 +14,8 @@ import {
   Heart,
   BedDouble,
   Utensils,
-  ArrowRight,
-  ArrowLeft,
   X,
   ChevronRight,
-  ShieldCheck,
   Award,
   Users
 } from "lucide-react";
@@ -616,6 +613,63 @@ export default function App() {
         </div>
       </footer>
 
+      {/* Amenity Detail Modal - CUSTOMIZE RETREAT */}
+      <AnimatePresence>
+        {selectedAmenityDetail && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 bg-black/85 backdrop-blur-sm z-[9999] flex items-center justify-center p-4" 
+            onClick={() => setSelectedAmenityDetail(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }} 
+              animate={{ scale: 1, y: 0 }} 
+              exit={{ scale: 0.9, y: 20 }} 
+              className="bg-[#0a1410] border border-gold/30 p-8 md:p-10 w-full max-w-lg relative shadow-2xl" 
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setSelectedAmenityDetail(null)} 
+                className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-2 mb-6">
+                <Sparkles className="w-4 h-4 text-gold" />
+                <span className="text-[10px] tracking-[0.25em] uppercase text-gold font-sans font-bold">CUSTOMIZE RETREAT</span>
+              </div>
+
+              <h2 className="font-serif text-3xl text-white mb-2">{selectedAmenityDetail.name}</h2>
+              <p className="text-[10px] tracking-[0.2em] uppercase text-[#1aa87a] font-sans font-bold mb-8">
+                {selectedAmenityDetail.tagline}
+              </p>
+
+              <p className="text-white/80 font-sans text-sm leading-relaxed mb-10">
+                {selectedAmenityDetail.description}
+              </p>
+
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => handleWhatsAppContact(`Greetings DG Green Farms, I have a custom inquiry about the "${selectedAmenityDetail.name}" amenity.`)}
+                  className="w-full py-4 bg-gold text-luxury-dark font-sans text-[10px] tracking-[0.15em] font-bold uppercase hover:bg-gold-light transition-colors"
+                >
+                  ENQUIRE VIA WHATSAPP ABOUT {selectedAmenityDetail.name}
+                </button>
+                <button
+                  onClick={() => window.location.href = "tel:+919977220204"}
+                  className="w-full py-4 bg-transparent border border-white/20 text-white font-sans text-[10px] tracking-[0.15em] font-bold uppercase hover:border-gold hover:text-gold transition-all"
+                >
+                  CALL COORDINATOR DIRECTLY
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Lightbox Modal */}
       <AnimatePresence>
         {activeLightboxImage && (
@@ -635,3 +689,4 @@ export default function App() {
     </main>
   );
 }
+
