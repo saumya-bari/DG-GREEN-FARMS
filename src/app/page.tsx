@@ -32,6 +32,11 @@ export default function App() {
   const [activeLightboxImage, setActiveLightboxImage] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -246,7 +251,7 @@ export default function App() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:border-gold/30 hover:text-gold'}`}
+              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:text-gold hover:border-gold/30 hover:text-gold'}`}
             >
               {cat}
             </button>
@@ -308,7 +313,7 @@ export default function App() {
             </div>
           </div>
           <div className="pt-10 border-t border-white/5 text-[10px] text-white/40 uppercase tracking-widest font-sans text-center">
-            &copy; {new Date().getFullYear()} DG Green Farms. All Rights Reserved. Website developed by SAUMYA BARI
+            &copy; {currentYear || '2025'} DG Green Farms. All Rights Reserved. Website developed by SAUMYA BARI
           </div>
         </div>
       </footer>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Flame, Waves, Sparkles } from "lucide-react";
 
@@ -8,9 +9,34 @@ interface LuxuryHeroProps {
   onExploreClick: () => void;
 }
 
+interface Particle {
+  width: number;
+  height: number;
+  left: string;
+  top: string;
+  yMove: number;
+  xMove: number;
+  duration: number;
+  delay: number;
+}
+
 export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroProps) {
-  // Beautiful luxury-inspired floating particles
-  const particles = Array.from({ length: 22 });
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  useEffect(() => {
+    // Generate particles only on the client side to avoid hydration mismatch
+    const generatedParticles = Array.from({ length: 22 }).map(() => ({
+      width: Math.random() * 3 + 2,
+      height: Math.random() * 3 + 2,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      yMove: -Math.random() * 150 - 50,
+      xMove: (Math.random() - 0.5) * 40,
+      duration: Math.random() * 6 + 5,
+      delay: Math.random() * 5,
+    }));
+    setParticles(generatedParticles);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#021107] pt-20">
@@ -71,25 +97,25 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
         </div>
 
         {/* Dynamic Sparkle/Gold floating particle animations */}
-        {particles.map((_, i) => (
+        {particles.map((p, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-gold/70"
             style={{
-              width: Math.random() * 3 + 2,
-              height: Math.random() * 3 + 2,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: p.width,
+              height: p.height,
+              left: p.left,
+              top: p.top,
             }}
             animate={{
-              y: [0, -Math.random() * 150 - 50],
-              x: [0, (Math.random() - 0.5) * 40],
+              y: [0, p.yMove],
+              x: [0, p.xMove],
               opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: Math.random() * 6 + 5,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: p.delay,
               ease: "linear",
             }}
           />
