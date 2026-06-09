@@ -137,32 +137,50 @@ export default function App() {
       {/* Story Section */}
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10" id="about">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative h-[480px] md:h-[580px] w-full">
+          <div className="relative h-[500px] md:h-[650px] w-full">
+            {/* Main Pool Image */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="absolute right-0 top-0 w-[82%] h-[75%] overflow-hidden bg-[#0c2415] border border-gold/15 shadow-2xl group cursor-pointer"
+              className="absolute right-0 top-0 w-[90%] h-[75%] overflow-hidden bg-[#0c2415] border border-gold/15 shadow-2xl group cursor-pointer"
             >
-              <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" alt="About Pool" />
+              <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" alt="DG Green Farms Pool" />
+              <div className="absolute inset-0 bg-black/20" />
             </motion.div>
+
+            {/* Overlapping Bedroom Image */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="absolute left-0 bottom-0 w-[58%] h-[50%] overflow-hidden bg-[#1a1205] border-4 border-[#0a140f] shadow-2xl group cursor-pointer"
+              transition={{ delay: 0.2 }}
+              className="absolute left-0 bottom-0 w-[55%] h-[48%] overflow-hidden bg-[#1a1205] border-4 border-[#0a140f] shadow-2xl group cursor-pointer z-20"
             >
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" alt="About Bedroom" />
+              <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" alt="Master Suite" />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <span className="text-[8px] tracking-[0.3em] uppercase text-gold/80 font-bold mb-1">STAYCATION HAVEN</span>
+                <h4 className="font-serif italic text-white text-base mb-4">Bespoke Twilight Pool</h4>
+                <div className="mt-auto pt-4 border-t border-white/10">
+                  <span className="text-[7px] tracking-[0.4em] uppercase text-white/40 font-bold">MASTER SUITE</span>
+                </div>
+              </div>
             </motion.div>
+
+            {/* Award Badge */}
             <motion.div
-              initial={{ rotate: -15, scale: 0.8 }}
-              whileInView={{ rotate: 0, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="absolute right-[5%] bottom-[12%] z-30 bg-gold text-luxury-dark p-4 text-center shadow-lg w-[140px]"
+              transition={{ delay: 0.4 }}
+              className="absolute right-[5%] bottom-[5%] z-30 bg-gold text-luxury-dark p-6 text-center shadow-2xl min-w-[150px]"
             >
-              <Award className="w-5 h-5 mx-auto text-luxury-dark mb-1" />
-              <span className="font-serif text-2xl font-bold block">4.7 ★</span>
-              <span className="text-[7px] tracking-widest uppercase font-bold block mt-1">GUEST RATING</span>
+              <div className="flex flex-col items-center">
+                <Award className="w-6 h-6 text-luxury-dark mb-1" />
+                <span className="font-serif text-2xl font-bold block">4.7 ★</span>
+                <span className="text-[8px] tracking-[0.2em] uppercase font-bold block mt-1">55 GOOGLE REVIEWS</span>
+              </div>
             </motion.div>
           </div>
 
@@ -172,25 +190,37 @@ export default function App() {
             viewport={{ once: true }}
             className="text-left"
           >
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-4 mb-6">
               <span className="w-12 h-[1px] bg-gold" />
-              <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold">OUR SANCTUARY</span>
+              <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">INSIDE THE SANCTUARY</span>
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight mb-6">
+            <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-tight mb-8">
               A Private Escape <br />
               <span className="italic text-gold text-glow">Coutured for Serenity</span>
             </h2>
-            <p className="text-white/85 text-sm md:text-base leading-relaxed mb-10 font-light font-sans">
-              Experience the peak of exclusive farm living at DG Green Farms. Our boutique resort offers a bespoke takeover experience, ensuring absolute privacy for your celebrations and retreats.
-            </p>
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-gold/15">
+            <div className="space-y-6 text-white/80 text-sm md:text-base leading-relaxed mb-12 font-light font-sans max-w-xl">
+              <p>
+                Turn your weekend into a mini-vacation at <strong>DG Green Farms</strong> 🌿✨ 
+                Experience good vibes, cozy deluxe rooms, premium pool dips, and unforgettable moments with family and friends! 💛 
+                Whether relaxing under our outdoor Gazebo, strolling the lush organic garden, or enjoying top-tier gourmet food prepared with personal care by <strong>Chef Vivek Sharma and Rahul</strong>, DG Green Farms is the perfect gated destination for parties, get-togethers, and weekend escapes in Indore.
+              </p>
+              <p className="italic text-white/40 text-xs">
+                "Chef Vivek Sharma and Rahul did a fantastic job with food and service." Your escape includes complete privacy and helpful, highly rated on-site support.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-12 pt-8 border-t border-gold/15">
               <div>
-                <span className="text-4xl text-gold font-serif"><Counter target={4} suffix="+" /></span>
-                <span className="block text-[10px] uppercase tracking-widest text-white/50 mt-1 font-sans">Deluxe Suites</span>
+                <span className="text-4xl text-gold font-serif block mb-1">
+                  <Counter target={4} suffix="+" />
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">DELUXE SUITES</span>
               </div>
               <div>
-                <span className="text-4xl text-gold font-serif"><Counter target={100} suffix="%" /></span>
-                <span className="block text-[10px] uppercase tracking-widest text-white/50 mt-1 font-sans">Privacy Guarantee</span>
+                <span className="text-4xl text-gold font-serif block mb-1">
+                  <Counter target={100} suffix="%" />
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNBIASED PRIVACY</span>
               </div>
             </div>
           </motion.div>
