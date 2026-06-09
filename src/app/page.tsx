@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -245,6 +246,22 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeLightboxImage, selectedCategory]);
 
+  // Variants for staggered animations in the Specifications section
+  const listContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const listItemVariants = {
+    hidden: { opacity: 0, x: -15 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+  };
+
   return (
     <main className="relative min-h-screen bg-luxury-dark text-white selection:bg-gold/30 overflow-x-hidden">
       <CustomCursor />
@@ -404,14 +421,12 @@ export default function App() {
 
       {/* See the Beauty - Scrolling Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="captured-moments">
-        {/* Editorial Header */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
         </div>
         
         <div className="relative w-full overflow-hidden">
-          {/* Subtle gradient feathering on left/right edges for exquisite high-end editorial feel */}
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#040906] to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#040906] to-transparent z-20 pointer-events-none" />
 
@@ -549,97 +564,138 @@ export default function App() {
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-bold block mb-4">ESTATE BLUEPRINTS & CONVENIENCES</span>
               <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">
                 Verified Estate <span className="italic text-gold text-glow">Specifications</span>
               </h2>
-            </div>
-            <div className="flex items-center gap-2.5 px-5 py-3 border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex items-center gap-2.5 px-5 py-3 border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm"
+            >
               <ShieldCheck className="w-4 h-4 text-emerald-500" />
               <span className="text-[9px] tracking-[0.2em] uppercase text-white/80 font-bold font-sans">GOOGLE MAPS VERIFIED PROPERTY</span>
-            </div>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
             {/* Card 1: Property Accessibility */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-10 bg-[#060e0a]/60 border border-gold/10 hover:border-gold/30 transition-all duration-500"
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="p-10 bg-[#060e0a]/60 border border-gold/10 hover:border-gold/30 transition-all duration-500 group"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-blue-600/20 border border-blue-600/40 flex items-center justify-center">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-12 h-12 bg-blue-600/20 border border-blue-600/40 flex items-center justify-center"
+                >
                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"></path><path d="M11 11.5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"></path><path d="M15 11.5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"></path><path d="M12 16c1.5 0 3-.5 3.5-1.5"></path></svg>
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="font-serif text-lg text-white">Property Accessibility</h4>
                   <span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold font-sans">INCLUSIVE DESIGN</span>
                 </div>
               </div>
-              <ul className="space-y-4">
+              <motion.ul 
+                variants={listContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-4"
+              >
                 {["Assistive hearing loop installed", "Wheelchair-accessible entrance", "Wheelchair-accessible car park", "Seating & restrooms accessible"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
+                  <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
                     <Check className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>{item}</span>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
 
             {/* Card 2: Parking & Valet */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               transition={{ delay: 0.1 }}
-              className="p-10 bg-[#060e0a]/60 border border-gold/10 hover:border-gold/30 transition-all duration-500"
+              className="p-10 bg-[#060e0a]/60 border border-gold/10 hover:border-gold/30 transition-all duration-500 group"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-red-600/20 border border-red-600/40 flex items-center justify-center">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  className="w-12 h-12 bg-red-600/20 border border-red-600/40 flex items-center justify-center"
+                >
                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500"><rect width="16" height="10" x="4" y="9" rx="2"></rect><path d="M9 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M15 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M7 9V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4"></path></svg>
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="font-serif text-lg text-white">Parking & Valet</h4>
                   <span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold font-sans">SEAMLESS INGRESS</span>
                 </div>
               </div>
-              <ul className="space-y-4">
+              <motion.ul 
+                variants={listContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-4"
+              >
                 {["Free on-site parking garage", "Secure parking lot inside gates", "Free spacious street parking", "Fully gated 24/7 private security"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
+                  <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
                     <Check className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>{item}</span>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
 
             {/* Card 3: Pet & Garden Policy */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               transition={{ delay: 0.2 }}
-              className="p-10 bg-[#060e0a]/60 border border-gold/10 hover:border-gold/30 transition-all duration-500"
+              className="p-10 bg-[#060e0a]/60 border border-gold/10 hover:border-gold/30 transition-all duration-500 group"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-orange-600/20 border border-orange-600/40 flex items-center justify-center text-orange-500">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-12 h-12 bg-orange-600/20 border border-orange-600/40 flex items-center justify-center text-orange-500"
+                >
                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="4" r="2"></circle><circle cx="18" cy="8" r="2"></circle><circle cx="20" cy="16" r="2"></circle><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-7 0V15a5 5 0 0 1 2-5Z"></path><path d="M15 10c0 .3.03.6.08.9"></path></svg>
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="font-serif text-lg text-white">Pet & Garden Policy</h4>
                   <span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold font-sans">LUSH OPEN SPACES</span>
                 </div>
               </div>
-              <ul className="space-y-4">
+              <motion.ul 
+                variants={listContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-4"
+              >
                 {["Dogs allowed inside villa spaces", "Vast organic garden lawns & Gazebo", "Spacious layouts for night walks", "Perfect for celebrations & gatherings"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
+                  <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
                     <Check className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>{item}</span>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
           </div>
         </div>
