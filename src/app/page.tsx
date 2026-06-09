@@ -417,7 +417,7 @@ export default function App() {
                 </div>
               </div>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Parsvnath+City+Satwik+Green+Manglaya+Sadak+Rahu+Khedi+Indore"
+                href="https://www.google.com/maps/search/?api=1&query=DG+Green+Farms+–+Perfect+Destination+for+Parties+%26+Gatherings+in+Indore"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans text-center shadow-lg"
