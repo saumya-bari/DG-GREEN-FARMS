@@ -25,7 +25,7 @@ import LuxuryNavbar from "@/components/LuxuryNavbar";
 import LuxuryHero from "@/components/LuxuryHero";
 import CustomCursor from "@/components/CustomCursor";
 import Counter from "@/components/Counter";
-import { amenitiesList, reviewsList, galleryImages } from "@/app/lib/data";
+import { amenitiesList, reviewsList } from "@/app/lib/data";
 
 export default function App() {
   const [selectedAmenityDetail, setSelectedAmenityDetail] = useState<any>(null);
@@ -45,6 +45,44 @@ export default function App() {
     const text = customText || "Greetings DG Green Farms, I would like to enquire about a luxury getaway staycation reservation.";
     window.open(`https://wa.me/919977220204?text=${encodeURIComponent(text)}`, "_blank");
   };
+
+  const galleryImages = [
+    {
+      src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop",
+      title: "Sunset Pool Majesty",
+      category: "Private Pool",
+      description: "Exclusive heated pool illuminated with twilight fiber-optics under Indore's evening sky.",
+      size: "col-span-12 md:col-span-8 h-[280px] md:h-[380px]"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop",
+      title: "Deluxe Master Sanctuary",
+      category: "Luxury Suite",
+      description: "Plush designer bedrooms with smart dimming lights and elegant pool-view glass panes.",
+      size: "col-span-12 md:col-span-4 h-[280px] md:h-[380px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920471/D9_vxkjho.png",
+      title: "Imperial Canopy Seclusion",
+      category: "Romantic Decor",
+      description: "A private evening setup adorned with golden accents, custom balloons, and rich red fabrics for romantic isolation.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920469/D5_ynpe38.png",
+      title: "Floating Rose Serenade",
+      category: "Romantic Decor",
+      description: "Red rose petals floating gently on the pool water under a canopy of warm romantic fairy-lights.",
+      size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+    },
+    {
+      src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D6_vvq67s.png",
+      title: "Midnight Solitude Spa",
+      category: "Wellness",
+      description: "Warm ambient lit wellness bath designed for private evening meditation and supreme relaxation.",
+      size: "col-span-12 md:col-span-4 h-[280px]"
+    }
+  ];
 
   const filteredImages = selectedCategory === "All"
     ? galleryImages
@@ -204,7 +242,7 @@ export default function App() {
         </div>
         
         <div className="flex md:flex-wrap items-center gap-2 mb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto">
-          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor", "Fine Dining", "Estate View"].map((cat) => (
+          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor"].map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
@@ -240,69 +278,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Patrons Section */}
-      <section className="py-24 bg-[#050b07] z-10 border-t border-gold/10" id="testimonials">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold mb-6 block">GUEST CHRONICLES</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-light text-white mb-20">Words of Our <span className="italic text-gold text-glow">Patrons</span></h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {reviewsList.map((rev) => (
-              <div key={rev.id} className="p-8 border border-gold/15 bg-[#0a1410] text-left">
-                <div className="flex gap-1 text-gold mb-6">
-                  {Array.from({ length: rev.rating }).map((_, i) => <Star key={i} className="w-4 h-4 fill-gold" />)}
-                </div>
-                <p className="font-serif italic text-white/90 text-lg mb-8 leading-relaxed">"{rev.text}"</p>
-                <div className="flex items-center gap-4 pt-6 border-t border-gold/10">
-                  <div className="w-10 h-10 border border-gold/30 bg-gold/10 flex items-center justify-center font-bold text-xs text-gold">{rev.authorInitials}</div>
-                  <div>
-                    <span className="text-xs font-semibold text-white block font-sans">{rev.author}</span>
-                    <span className="text-[10px] text-white/50 uppercase tracking-widest font-sans font-medium">{rev.stayType}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Verified Estate Specifications Panel */}
-      <section className="py-24 bg-[#0a1410] z-10 border-t border-gold/15">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-12">
-            <div>
-              <span className="text-[10px] tracking-[0.25em] uppercase text-gold font-sans font-semibold block mb-2">ESTATE BLUEPRINTS & CONVENIENCES</span>
-              <h3 className="font-serif text-3xl font-light text-white leading-tight">Verified Estate <span className="italic text-gold text-glow">Specifications</span></h3>
-            </div>
-            <div className="bg-[#0c2415]/80 border border-gold/25 px-4 py-2 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span className="text-[10px] uppercase font-sans tracking-widest text-white/90">Google Maps Verified Property</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: "Property Accessibility", icon: "♿", items: ["Assistive hearing loop installed", "Wheelchair-accessible entrance", "Wheelchair-accessible car park", "Seating & restrooms accessible"] },
-              { title: "Parking & Valet", icon: "🚗", items: ["Free on-site parking garage", "Secure parking lot inside gates", "Free spacious street parking", "Fully gated 24/7 private security"] },
-              { title: "Pet & Garden Policy", icon: "🐾", items: ["Dogs allowed inside villa spaces", "Vast organic garden lawns & Gazebo", "Spacious layouts for night walks", "Perfect for celebrations & gatherings"] }
-            ].map((spec) => (
-              <div key={spec.title} className="p-8 bg-[#060e0a] border border-gold/10 group hover:border-gold/30 transition-all duration-500">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 border border-gold/20 flex items-center justify-center text-xl bg-gold/5">{spec.icon}</div>
-                  <h4 className="font-serif text-lg text-white">{spec.title}</h4>
-                </div>
-                <ul className="space-y-3">
-                  {spec.items.map(item => (
-                    <li key={item} className="flex items-center gap-3 text-xs text-white/60 font-light">
-                      <Check className="w-3.5 h-3.5 text-emerald-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-luxury-dark border-t border-gold/15 pt-20 pb-12 z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -322,27 +297,18 @@ export default function App() {
                 <li><a href="#about" className="hover:text-gold transition-colors uppercase tracking-widest">Story</a></li>
                 <li><a href="#amenities" className="hover:text-gold transition-colors uppercase tracking-widest">Amenities</a></li>
                 <li><a href="#gallery" className="hover:text-gold transition-colors uppercase tracking-widest">Gallery</a></li>
-                <li><a href="#testimonials" className="hover:text-gold transition-colors uppercase tracking-widest">Patrons</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">CONTACT</h4>
               <ul className="space-y-4 text-xs text-white/60 font-light font-sans uppercase tracking-widest">
                 <li>+91 99772 20204</li>
-                <li>concierge@dggreenfarms.com</li>
                 <li>Parsvnath City, Indore</li>
               </ul>
             </div>
           </div>
-          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/40 uppercase tracking-widest font-sans">
-            <div className="flex flex-col gap-1">
-              <span>&copy; {new Date().getFullYear()} DG Green Farms. All Rights Reserved.</span>
-              <span className="text-gold/50 normal-case">Website developed by SAUMYA BARI</span>
-            </div>
-            <div className="flex gap-8">
-              <a href="#" className="hover:text-gold">Privacy</a>
-              <a href="#" className="hover:text-gold">Terms</a>
-            </div>
+          <div className="pt-10 border-t border-white/5 text-[10px] text-white/40 uppercase tracking-widest font-sans text-center">
+            &copy; {new Date().getFullYear()} DG Green Farms. All Rights Reserved. Website developed by SAUMYA BARI
           </div>
         </div>
       </footer>
@@ -357,10 +323,7 @@ export default function App() {
               <h2 className="font-serif text-3xl font-light text-white mb-2">{selectedAmenityDetail.name}</h2>
               <span className="text-[10px] tracking-widest text-gold uppercase mb-8 block font-sans font-semibold">{selectedAmenityDetail.tagline}</span>
               <p className="text-white/80 leading-relaxed mb-10 text-sm font-sans font-light">{selectedAmenityDetail.description}</p>
-              <div className="flex flex-col gap-3">
-                <button onClick={() => handleWhatsAppContact(`Inquiry about ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark text-xs tracking-widest uppercase font-bold hover:bg-gold-light transition-colors font-sans">Inquire via WhatsApp</button>
-                <a href="tel:+919977220204" className="w-full py-4 border border-white/20 text-white text-xs tracking-widest uppercase font-bold text-center hover:border-gold hover:text-gold transition-all">Call Coordinator</a>
-              </div>
+              <button onClick={() => handleWhatsAppContact(`Inquiry about ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark text-xs tracking-widest uppercase font-bold hover:bg-gold-light transition-colors font-sans">Inquire via WhatsApp</button>
             </motion.div>
           </motion.div>
         )}
@@ -370,16 +333,12 @@ export default function App() {
         {activeLightboxImage && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-6 backdrop-blur-lg" onClick={handleCloseLightbox}>
             <button onClick={handleCloseLightbox} className="absolute top-10 right-10 text-white hover:text-gold transition-colors z-[10001] border border-white/20 px-4 py-2 text-xs tracking-widest uppercase flex items-center gap-2"><X className="w-4 h-4" /> Close</button>
-            <button onClick={(e) => { e.stopPropagation(); handlePrevLightbox(); }} className="absolute left-8 text-white/50 hover:text-gold transition-all"><ArrowLeft size={48} strokeWidth={1} /></button>
-            <button onClick={(e) => { e.stopPropagation(); handleNextLightbox(); }} className="absolute right-8 text-white/50 hover:text-gold transition-all"><ArrowRight size={48} strokeWidth={1} /></button>
-            
             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="relative max-w-5xl max-h-[85vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
               <img src={activeLightboxImage} className="max-w-full max-h-[70vh] object-contain border border-gold/20 shadow-2xl" alt="Lightbox" />
               <div className="mt-8 text-center bg-black/50 backdrop-blur-md p-6 border border-white/10 w-full">
                 <span className="text-[10px] tracking-[0.3em] uppercase text-gold block mb-2">{filteredImages[lightboxIndex].category}</span>
                 <h4 className="font-serif text-2xl italic text-white mb-2">{filteredImages[lightboxIndex].title}</h4>
                 <p className="text-white/60 text-xs font-light max-w-2xl mx-auto">{filteredImages[lightboxIndex].description}</p>
-                <div className="mt-4 text-[9px] text-white/30 tracking-widest font-mono">PHOTO {lightboxIndex + 1} OF {filteredImages.length}</div>
               </div>
             </motion.div>
           </motion.div>

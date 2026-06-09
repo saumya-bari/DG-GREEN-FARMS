@@ -57,13 +57,7 @@ const jsonLd = {
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     ],
     "opens": "00:00",
     "closes": "23:59"
@@ -74,7 +68,7 @@ const jsonLd = {
     { "@type": "LocationFeatureSpecification", "name": "Candlelight Dinner Setups", "value": "true" },
     { "@type": "LocationFeatureSpecification", "name": "Luxury Jacuzzi Suites", "value": "true" },
     { "@type": "LocationFeatureSpecification", "name": "Custom Celebrations Decor", "value": "true" },
-    { "@type": "LocationFeatureSpecification", "name": "Indori organic culinary service", "value": "true" }
+    { "@type": "LocationFeatureSpecification", "name": "Indor organic culinary service", "value": "true" }
   ]
 };
 
@@ -94,7 +88,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased font-sans bg-luxury-dark text-white">
         {children}
       </body>
     </html>

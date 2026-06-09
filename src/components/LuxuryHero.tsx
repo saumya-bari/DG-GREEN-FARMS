@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion";
-import { Sparkles, ArrowDown } from "lucide-react";
+import { ArrowDown, Flame, Waves, Sparkles } from "lucide-react";
 
 interface LuxuryHeroProps {
   onBookClick: () => void;
@@ -9,66 +9,215 @@ interface LuxuryHeroProps {
 }
 
 export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroProps) {
+  // Beautiful luxury-inspired floating particles
+  const particles = Array.from({ length: 22 });
+
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-luxury-dark">
-      {/* Dynamic Vector Background */}
-      <div className="absolute inset-0 opacity-15">
-        <svg className="w-full h-full" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#021107] pt-20">
+      {/* Real background image of the twilight pool with a luxury rich overlay blend */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+        <img
+          src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1920&h=1080&auto=format&fit=crop"
+          alt="Luxury Private Pool Backdrop"
+          className="w-full h-full object-cover opacity-35"
+        />
+        {/* Cinematic rich dark gradient overlays to keep typography readable and premium */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#021107] via-[#021107]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#021107]/50 via-transparent to-[#021107]/50" />
+        
+        {/* Neon blue pool reflection glow */}
+        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-emerald-500/10 blur-[130px] opacity-70" />
+        <div className="absolute top-[50%] left-1/4 w-[400px] h-[400px] rounded-full bg-teal-500/5 blur-[120px] opacity-60" />
+        
+        {/* Gold thread vectors (Simulating minimalist 3D motion layouts) */}
+        <svg className="absolute inset-0 w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
           <motion.path
-            d="M0,500 Q250,200 500,500 T1000,500"
+            d="M -100 200 Q 300 400 800 150 T 1700 350"
             fill="none"
             stroke="#c9a84c"
-            strokeWidth="0.5"
-            animate={{ d: ["M0,500 Q250,200 500,500 T1000,500", "M0,500 Q250,800 500,500 T1000,500", "M0,500 Q250,200 500,500 T1000,500"] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            strokeWidth="1.5"
+            animate={{
+              d: [
+                "M -100 200 Q 300 400 800 150 T 1700 350",
+                "M -100 250 Q 350 350 800 200 T 1700 300",
+                "M -100 200 Q 300 400 800 150 T 1700 350"
+              ]
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.path
+            d="M -100 600 Q 400 450 900 650 T 1800 500"
+            fill="none"
+            stroke="#c9a84c"
+            strokeWidth="1"
+            animate={{
+              d: [
+                "M -100 600 Q 400 450 900 650 T 1800 500",
+                "M -100 550 Q 450 500 900 600 T 1800 550",
+                "M -100 600 Q 400 450 900 650 T 1800 500"
+              ]
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
         </svg>
+
+        {/* Liquid waves mimicking water ripples */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.18]">
+          <div className="relative w-full h-full max-w-4xl max-h-[700px] flex items-center justify-center">
+            <div className="absolute w-[280px] h-[280px] md:w-[480px] md:h-[480px] border border-gold/15 rounded-full liquid-pool-bg" />
+            <div className="absolute w-[350px] h-[350px] md:w-[600px] md:h-[600px] border border-emerald-500/10 rounded-full liquid-pool-bg [animation-delay:4s]" />
+            <div className="absolute w-[420px] h-[420px] md:w-[720px] md:h-[720px] border border-gold/10 rounded-full liquid-pool-bg [animation-delay:8s]" />
+          </div>
+        </div>
+
+        {/* Dynamic Sparkle/Gold floating particle animations */}
+        {particles.map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gold/70"
+            style={{
+              width: Math.random() * 3 + 2,
+              height: Math.random() * 3 + 2,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -Math.random() * 150 - 50],
+              x: [0, (Math.random() - 0.5) * 40],
+              opacity: [0, 0.8, 0],
+            }}
+            transition={{
+              duration: Math.random() * 6 + 5,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "linear",
+            }}
+          />
+        ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      {/* Main Hero Elements */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        {/* Eyebrow badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/25 backdrop-blur-sm mb-6"
         >
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <Sparkles className="w-4 h-4 text-gold" />
-            <span className="text-[10px] tracking-[0.5em] uppercase text-gold font-sans font-semibold">ESCAPE TO THE EXTRAORDINARY</span>
+          <div className="flex items-center gap-2">
+            <img 
+              src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" 
+              alt="DG Green Farms Logo" 
+              className="w-5 h-5 object-cover rounded-full border border-gold/40 shadow-[0_0_8px_rgba(201,168,76,0.25)]"
+            />
+            <span className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-gold font-sans font-semibold">
+              DG GREEN FARMS
+            </span>
           </div>
-          
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-tight mb-10">
-            DG Green <br /> <span className="italic font-light text-gold text-glow">Farms</span>
-          </h1>
-          
-          <p className="max-w-2xl mx-auto text-white/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-sans">
-            A sanctuary where architectural elegance meets the raw beauty of the forest. 
-            Indulge in an exclusive retreat designed for those who seek silence and luxury.
-          </p>
+          <span className="text-white/30 hidden md:inline">|</span>
+          <div className="flex items-center gap-1.5 bg-[#0c2415]/70 px-2 py-0.5 border border-gold/20 rounded-md">
+            <span className="text-gold font-bold text-xs">4.7 ★</span>
+            <span className="text-[9px] md:text-[10px] tracking-wider text-white/80 font-sans uppercase font-medium">
+              (Google Reviews)
+            </span>
+          </div>
+        </motion.div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button
-              onClick={onBookClick}
-              className="px-10 py-4 bg-gold hover:bg-gold-light text-luxury-dark text-xs tracking-[0.3em] uppercase font-bold transition-all duration-300 shadow-xl cursor-pointer"
-            >
-              Secure Stay
-            </button>
-            <button
-              onClick={onExploreClick}
-              className="px-10 py-4 bg-transparent border border-gold/40 hover:border-gold text-gold text-xs tracking-[0.3em] uppercase font-bold transition-all duration-300 hover:bg-gold/5 cursor-pointer shadow-lg"
-            >
-              View Gallery
-            </button>
+        {/* Display Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 0.95, y: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="font-serif text-5xl sm:text-7xl md:text-8xl font-light text-white tracking-wide leading-[1.1] mb-6"
+          id="hero-title"
+        >
+          Where <span className="font-serif italic text-gold text-glow">Luxury</span>
+          <br />
+          <span className="font-sans font-bold tracking-tight block mt-3 text-2xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 uppercase">
+            Parties & Gatherings Blend
+          </span>
+        </motion.h1>
+
+        {/* Sub-tagline aligned with Google Map info */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 0.9, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5 }}
+          className="text-xs sm:text-sm text-gold-light/95 leading-relaxed tracking-widest uppercase font-sans font-medium mb-10 max-w-3xl mx-auto"
+        >
+          Indore's Perfect Destination for Celebrations, Get-togethers & Weekend Escapes
+        </motion.p>
+
+        {/* Feature List/Grid pill style tags */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/70 tracking-wider uppercase font-sans mb-12 max-w-2xl mx-auto"
+        >
+          <div className="flex items-center gap-1.5 px-3 py-1 border-r border-white/20 last:border-0">
+            <Waves className="w-4 h-4 text-gold opacity-80" />
+            <span>Private Pool</span>
           </div>
+          <div className="flex items-center gap-1.5 px-3 py-1 border-r border-white/20 last:border-0">
+            <Flame className="w-4 h-4 text-gold opacity-80" />
+            <span>Heated Jacuzzi</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-3 py-1 border-r border-white/20 last:border-0">
+            <Waves className="w-4 h-4 text-gold opacity-80" />
+            <span>Deluxe Suites</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-3 py-1">
+            <Sparkles className="w-4 h-4 text-gold opacity-80" />
+            <span>In-House Diner</span>
+          </div>
+        </motion.div>
+
+        {/* Interactive Luxury CTA Button Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.8 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onBookClick}
+            className="w-full sm:w-auto px-8 py-4 bg-gold text-luxury-dark font-sans text-xs tracking-[0.2em] font-semibold uppercase hover:bg-gold-light focus:outline-none transition-all duration-300 shadow-2xl cursor-pointer"
+            id="hero-cta-primary"
+          >
+            Reserve Your Escape
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05, borderColor: "#c9a84c", color: "#c9a84c" }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onExploreClick}
+            className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/30 text-white font-sans text-xs tracking-[0.2em] uppercase hover:bg-white/5 focus:outline-none transition-all duration-300 cursor-pointer"
+            id="hero-cta-secondary"
+          >
+            Explore Property
+          </motion.button>
         </motion.div>
       </div>
 
+      {/* Elegant scrolling prompt */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold/50 cursor-pointer"
-        onClick={onExploreClick}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <ArrowDown className="w-5 h-5" strokeWidth={1} />
+        <span className="text-[9px] tracking-[0.3em] uppercase text-white/50 font-sans">
+          Scroll to discover
+        </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+        >
+          <ArrowDown className="w-4 h-4 text-gold-light" />
+        </motion.div>
       </motion.div>
     </section>
   );
