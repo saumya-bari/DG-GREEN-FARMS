@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -102,7 +103,7 @@ export default function App() {
       title: "Floating Champagne Breakfast",
       category: "Fine Dining",
       description: "A stunning floating tray with premium treats on the crystal pool.",
-      size: "col-span-12 md:col-span-4 h-[340px]"
+      size: "col-span-12 md:max-w-none md:col-span-4 h-[340px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920436/C2_l033eb.png",
@@ -531,7 +532,7 @@ export default function App() {
               >
                 <img 
                   src={image.src} 
-                  className="w-full h-full object-contain transition-transform duration-[4s] group-hover:scale-105" 
+                  className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105" 
                   alt={image.title} 
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
@@ -695,6 +696,8 @@ export default function App() {
             </div>
             <div className="flex gap-6 text-[9px] text-white/40 uppercase tracking-[0.2em] font-sans">
               <span>BOUTIQUE STAYS</span>
+              <span className="text-white/10">•</span>
+              <span>ANNIVERSARY SPECIALISTS</span>
               <span className="text-white/10">•</span>
               <span>ANNIVERSARY SPECIALISTS</span>
               <span className="text-white/10">•</span>
