@@ -27,6 +27,7 @@ import Counter from "@/components/Counter";
 import CircularGallery from "@/components/ui/CircularGallery";
 import GlareHover from "@/components/GlareHover";
 import Threads from "@/components/Threads";
+import GlitchText from "@/components/GlitchText";
 import { amenitiesList, reviewsList } from "@/app/lib/data";
 
 export default function App() {
@@ -617,7 +618,9 @@ export default function App() {
             <div className="col-span-1 md:col-span-1 space-y-6">
               <div className="flex items-center gap-3">
                 <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" className="w-12 h-12 rounded-full border border-gold/30" alt="Logo" />
-                <span className="font-serif text-xl tracking-widest text-gold uppercase">DG <span className="text-white italic font-light">Green Farms</span></span>
+                <div className="font-serif text-xl md:text-2xl tracking-wider text-gold hover:text-gold-light transition-colors duration-300 uppercase flex items-center">
+                  <GlitchText speed={0.8} className="font-serif">DG GREEN FARMS</GlitchText>
+                </div>
               </div>
               <p className="text-white/50 text-[11px] max-w-sm leading-relaxed font-light font-sans">
                 Indore's premiere boutique resort. Orchestrating private luxury stays and authentic farm culinary retreats.
@@ -628,7 +631,7 @@ export default function App() {
                     <path d="M12.008.01C5.397.01.06 5.348.06 12.012c0 2.097.546 4.142 1.587 5.946L.057 24l6.302-1.654c1.751.953 3.719 1.454 5.724 1.455 6.613 0 11.949-5.34 11.953-11.997.002-3.204-1.243-6.216-3.505-8.484C20.272 1.256 17.21.011 12.008.011zM12 21.99c-1.89 0-3.743-.507-5.362-1.467l-.384-.228-3.985 1.045 1.063-3.89-.25-.398C2.106 15.434 1.58 13.565 1.58 11.66c0-5.75 4.678-10.428 10.43-10.428 2.784 0 5.4.108 7.387 2.098 1.986 1.99 3.082 4.637 3.08 7.42-.005 5.752-4.685 10.43-10.43 10.43zm5.72-7.85c-.3-.15-1.776-.875-2.05-.975-.276-.1-.477-.15-.678.15-.2.3-.778.975-.953 1.175-.176.2-.352.225-.653.075-.3-.15-1.27-.467-2.42-1.493-.89-.795-1.494-1.78-1.67-2.08-.175-.3-.02-.463.13-.614.137-.135.303-.35.454-.525.15-.175.202-.303.303-.503.1-.2.05-.378-.025-.528-.076-.15-.678-1.636-.93-2.247-.245-.59-.496-.51-.678-.52-.18-.01-.387-.01-.593-.01-.2 0-.528.075-.804.377-.277.3-1.055 1.03-1.055 2.513s1.08 2.916 1.23 3.117c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.63.73.23 1.4.2 1.92.12.58-.087 1.776-.726 2.027-1.4.25-.675.25-1.25.176-1.375-.075-.125-.276-.225-.578-.376z"/>
                   </svg>
                 </a>
-                <a href="https://www.instagram.com/dggreenfarms" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold hover:bg-gold/5 rounded-full transition-all duration-300">
+                <a href="https://www.instagram.com/dggreenfarms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold hover:bg-gold/5 rounded-full transition-all duration-300">
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>

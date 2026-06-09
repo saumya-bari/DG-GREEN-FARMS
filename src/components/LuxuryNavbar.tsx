@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles, Phone } from "lucide-react";
+import GlitchText from "./GlitchText";
 
 interface LuxuryNavbarProps {
   onBookClick: () => void;
@@ -56,9 +57,9 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
               alt="DG Green Farms Logo" 
               className="w-9 h-9 object-cover rounded-full border border-gold/30 shadow-[0_0_10px_rgba(201,168,76,0.2)] group-hover:border-gold group-hover:shadow-[0_0_15px_rgba(201,168,76,0.35)] transition-all duration-300"
             />
-            <span className="font-serif text-xl md:text-2xl tracking-wider text-gold hover:text-gold-light transition-colors duration-300 uppercase">
-              DG <span className="font-sans font-light text-white group-hover:text-gold transition-colors duration-300 italic">Green Farms</span>
-            </span>
+            <div className="font-serif text-xl md:text-2xl tracking-wider text-gold hover:text-gold-light transition-colors duration-300 uppercase flex items-center">
+              <GlitchText speed={0.8} className="font-serif">DG GREEN FARMS</GlitchText>
+            </div>
           </a>
 
           {/* Desktop Nav Items */}
