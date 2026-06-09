@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -16,7 +17,11 @@ import {
   X,
   ChevronRight,
   Award,
-  Users
+  Users,
+  ArrowLeft,
+  ArrowRight,
+  ShieldCheck,
+  Instagram
 } from "lucide-react";
 import LuxuryNavbar from "@/components/LuxuryNavbar";
 import LuxuryHero from "@/components/LuxuryHero";
@@ -29,11 +34,6 @@ export default function App() {
   const [activeLightboxImage, setActiveLightboxImage] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [currentYear, setCurrentYear] = useState<number | null>(null);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -578,36 +578,73 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-luxury-dark border-t border-gold/15 pt-20 pb-12 z-10">
+      <footer className="bg-[#060e0a] border-t border-gold/15 pt-20 pb-12 z-10 text-left">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-            <div className="col-span-1 md:col-span-2 space-y-6">
+            <div className="col-span-1 md:col-span-1 space-y-6">
               <div className="flex items-center gap-3">
-                <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" className="w-10 h-10 rounded-full border border-gold/30" alt="Logo" />
-                <span className="font-serif text-2xl tracking-widest text-gold uppercase">DG <span className="text-white italic font-light">Green Farms</span></span>
+                <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" className="w-12 h-12 rounded-full border border-gold/30 shadow-[0_0_10px_rgba(201,168,76,0.2)]" alt="Logo" />
+                <span className="font-serif text-xl tracking-widest text-gold uppercase">DG <span className="text-white italic font-light">Green Farms</span></span>
               </div>
-              <p className="text-white/50 text-xs max-w-sm leading-relaxed font-light font-sans">
+              <p className="text-white/50 text-[11px] max-w-sm leading-relaxed font-light font-sans">
                 Indore's premiere boutique resort. Orchestrating private luxury stays, candlelight jacuzzi layouts, and authentic farm culinary retreats.
               </p>
+              <div className="flex gap-4 pt-2">
+                <a href="https://wa.me/919977220204" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold hover:bg-gold/5 rounded-full transition-all duration-300">
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.008.01C5.397.01.06 5.348.06 12.012c0 2.097.546 4.142 1.587 5.946L.057 24l6.302-1.654c1.751.953 3.719 1.454 5.724 1.455 6.613 0 11.949-5.34 11.953-11.997.002-3.204-1.243-6.216-3.505-8.484C20.272 1.256 17.21.011 12.008.011zM12 21.99c-1.89 0-3.743-.507-5.362-1.467l-.384-.228-3.985 1.045 1.063-3.89-.25-.398C2.106 15.434 1.58 13.565 1.58 11.66c0-5.75 4.678-10.428 10.43-10.428 2.784 0 5.4.108 7.387 2.098 1.986 1.99 3.082 4.637 3.08 7.42-.005 5.752-4.685 10.43-10.43 10.43zm5.72-7.85c-.3-.15-1.776-.875-2.05-.975-.276-.1-.477-.15-.678.15-.2.3-.778.975-.953 1.175-.176.2-.352.225-.653.075-.3-.15-1.27-.467-2.42-1.493-.89-.795-1.494-1.78-1.67-2.08-.175-.3-.02-.463.13-.614.137-.135.303-.35.454-.525.15-.175.202-.303.303-.503.1-.2.05-.378-.025-.528-.076-.15-.678-1.636-.93-2.247-.245-.59-.496-.51-.678-.52-.18-.01-.387-.01-.593-.01-.2 0-.528.075-.804.377-.277.3-1.055 1.03-1.055 2.513s1.08 2.916 1.23 3.117c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.63.73.23 1.4.2 1.92.12.58-.087 1.776-.726 2.027-1.4.25-.675.25-1.25.176-1.375-.075-.125-.276-.225-.578-.376z"/>
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/dggreenfarms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold hover:bg-gold/5 rounded-full transition-all duration-300">
+                  <Instagram className="w-5 h-5" />
+                </a>
+              </div>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">NAVIGATION</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8 font-sans">EXPLORE STAY</h4>
               <ul className="space-y-4 text-xs text-white/60 font-light font-sans">
-                <li><a href="#about" className="hover:text-gold transition-colors uppercase tracking-widest">Story</a></li>
-                <li><a href="#amenities" className="hover:text-gold transition-colors uppercase tracking-widest">Amenities</a></li>
-                <li><a href="#gallery-section" className="hover:text-gold transition-colors uppercase tracking-widest">Gallery</a></li>
+                <li><a href="#about" className="hover:text-gold transition-colors uppercase tracking-widest">The Farmhouse Story</a></li>
+                <li><a href="#amenities" className="hover:text-gold transition-colors uppercase tracking-widest">Bespoke Amenities</a></li>
+                <li><a href="#gallery-section" className="hover:text-gold transition-colors uppercase tracking-widest">Private Gallery</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">CONTACT</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8 font-sans">STAY INQUIRIES</h4>
               <ul className="space-y-4 text-xs text-white/60 font-light font-sans uppercase tracking-widest">
-                <li>+91 99772 20204</li>
-                <li>Parsvnath City, Indore</li>
+                <li><button onClick={() => handleWhatsAppContact("I am interested in a Luxurious Day Outing.")} className="hover:text-gold transition-colors text-left bg-transparent border-none p-0 cursor-pointer">Luxurious Day Outing</button></li>
+                <li><button onClick={() => handleWhatsAppContact("I am interested in an Overnight Farm Sanctuary stay.")} className="hover:text-gold transition-colors text-left bg-transparent border-none p-0 cursor-pointer">Overnight Farm Sanctuary</button></li>
+                <li><button onClick={() => handleWhatsAppContact("I am interested in a Romantic Candlelight Oasis.")} className="hover:text-gold transition-colors text-left bg-transparent border-none p-0 cursor-pointer">Romantic Candlelight Oasis</button></li>
               </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8 font-sans">INQUIRIES</h4>
+              <div className="space-y-4">
+                <div>
+                  <span className="text-[8px] uppercase tracking-widest text-white/30 block mb-1 font-sans">ENQUIRE MANAGER</span>
+                  <span className="text-sm font-bold text-white font-sans">+91 99772 20204</span>
+                </div>
+                <div className="text-[11px] text-white/50 leading-relaxed font-light font-sans uppercase tracking-wider max-w-[220px]">
+                  69, 70, Parsvnath City, Satwik Green, Manglaya Sadak, Rahu Khedi, Indore, Madhya Pradesh 453771
+                </div>
+              </div>
             </div>
           </div>
-          <div className="pt-10 border-t border-white/5 text-[10px] text-white/40 uppercase tracking-widest font-sans text-center">
-            &copy; {currentYear || '2025'} DG Green Farms. All Rights Reserved. Website developed by SAUMYA BARI
+          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-left space-y-1">
+              <div className="text-[10px] text-white/40 uppercase tracking-widest font-sans">
+                &copy; 2026 DG GREEN FARMS. ALL RIGHTS RESERVED. REGISTERED STAYCATION RESORT.
+              </div>
+              <div className="text-[10px] text-gold uppercase tracking-widest font-sans font-medium">
+                Website developed by SAUMYA BARI
+              </div>
+            </div>
+            <div className="flex gap-6 text-[9px] text-white/40 uppercase tracking-[0.2em] font-sans">
+              <span>BOUTIQUE STAYS</span>
+              <span className="text-white/10">•</span>
+              <span>ANNIVERSARY SPECIALISTS</span>
+              <span className="text-white/10">•</span>
+              <span>INDORI ORGANIC KITCHEN</span>
+            </div>
           </div>
         </div>
       </footer>
