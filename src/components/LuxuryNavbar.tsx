@@ -31,6 +31,7 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
     { label: "About", href: "#about" },
     { label: "Amenities", href: "#amenities" },
     { label: "Gallery", href: "#gallery-section" },
+    { label: "Reviews", href: "#reviews-section" },
   ];
 
   return (

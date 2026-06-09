@@ -19,7 +19,7 @@ import {
   Users,
   ShieldCheck,
   Instagram,
-  ArrowDown
+  Star
 } from "lucide-react";
 import LuxuryNavbar from "@/components/LuxuryNavbar";
 import LuxuryHero from "@/components/LuxuryHero";
@@ -29,7 +29,7 @@ import CircularGallery from "@/components/ui/CircularGallery";
 import GlareHover from "@/components/GlareHover";
 import Threads from "@/components/Threads";
 import GlitchText from "@/components/GlitchText";
-import { amenitiesList } from "@/app/lib/data";
+import { amenitiesList, reviewsList } from "@/app/lib/data";
 
 export default function App() {
   const [selectedAmenityDetail, setSelectedAmenityDetail] = useState<any>(null);
@@ -48,13 +48,13 @@ export default function App() {
   };
 
   const beautyImages = [
-    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", desc: "MASTER ESTATE SECTION" },
-    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", desc: "CULINARY EXPERIENCE" },
     { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004639/t3_hp3s6m.jpg", title: "Surprise Romantic Decor", desc: "BESPOKE ANNIVERSARIES" },
     { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg", title: "Luminescent Master Suite", desc: "DELUXE ACCOMMODATION" },
     { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t5_oyvkbx.jpg", title: "Private Group Retreat", desc: "SECURE GATHERINGS" },
     { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg", title: "Wellness Jacuzzi Spa", desc: "HYDROTHERAPY" },
     { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004637/t6_yf6uq3.jpg", title: "Lush Sanctuary Lawns", desc: "OPEN AIR ZEN" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", desc: "MASTER ESTATE SECTION" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", desc: "CULINARY EXPERIENCE" },
   ];
 
   const visualSanctuaryItems = [
@@ -194,6 +194,51 @@ export default function App() {
         </div>
       </section>
 
+      {/* Words of Our Patrons Section */}
+      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10" id="reviews-section">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold block mb-4">GUEST CHRONICLES</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">Words of Our <span className="italic text-gold text-glow">Patrons</span></h2>
+          </motion.div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {reviewsList.map((review, idx) => (
+            <motion.div 
+              key={review.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-[#0a1410] border border-gold/15 p-10 flex flex-col h-full relative group hover:border-gold/30 transition-all duration-500"
+            >
+              <div className="flex gap-1 mb-8">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 text-gold fill-gold" />
+                ))}
+              </div>
+              
+              <p className="text-white/80 italic font-sans text-sm leading-relaxed mb-10 flex-grow">
+                "{review.text}"
+              </p>
+              
+              <div className="w-full h-px bg-white/5 mb-8" />
+              
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gold/10 border border-gold/30 flex items-center justify-center font-bold text-gold text-xs">
+                  {review.authorInitials}
+                </div>
+                <div className="text-left">
+                  <h4 className="text-white font-bold text-sm mb-0.5">{review.author}</h4>
+                  <p className="text-[9px] tracking-widest uppercase text-white/40 font-bold">{review.stayType}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Visual Sanctuary Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
@@ -285,7 +330,7 @@ export default function App() {
                 </div>
               </GlareHover>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="h-full group">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="h-full group">
               <GlareHover width="100%" height="100%" background="#0a1410" borderColor="rgba(201, 168, 76, 0.15)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.15} className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30">
                 <div className="flex flex-col justify-between h-full w-full text-left">
                   <div>
@@ -326,6 +371,7 @@ export default function App() {
                 <li><a href="#about" className="hover:text-gold transition-colors">The Farmhouse Story</a></li>
                 <li><a href="#amenities" className="hover:text-gold transition-colors">Bespoke Amenities</a></li>
                 <li><a href="#gallery-section" className="hover:text-gold transition-colors">Private Gallery</a></li>
+                <li><a href="#reviews-section" className="hover:text-gold transition-colors">Guest Reviews</a></li>
               </ul>
             </div>
             <div>
