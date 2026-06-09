@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -26,13 +25,12 @@ import LuxuryNavbar from "@/components/LuxuryNavbar";
 import LuxuryHero from "@/components/LuxuryHero";
 import CustomCursor from "@/components/CustomCursor";
 import Counter from "@/components/Counter";
-import { amenitiesList, reviewsList, galleryImages, packagesList } from "@/app/lib/data";
+import { amenitiesList, reviewsList, galleryImages } from "@/app/lib/data";
 
 export default function App() {
   const [selectedAmenityDetail, setSelectedAmenityDetail] = useState<any>(null);
   const [activeLightboxImage, setActiveLightboxImage] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -47,12 +45,8 @@ export default function App() {
     window.open(`https://wa.me/919977220204?text=${encodeURIComponent(text)}`, "_blank");
   };
 
-  const filteredImages = selectedCategory === "All"
-    ? galleryImages
-    : galleryImages.filter((img) => img.category === selectedCategory);
-
   const handleOpenLightbox = (index: number) => {
-    setActiveLightboxImage(filteredImages[index].src);
+    setActiveLightboxImage(galleryImages[index].src);
     setLightboxIndex(index);
   };
 
@@ -60,16 +54,16 @@ export default function App() {
 
   const handleNextLightbox = () => {
     setLightboxIndex((prev) => {
-      const nextIdx = (prev + 1) % filteredImages.length;
-      setActiveLightboxImage(filteredImages[nextIdx].src);
+      const nextIdx = (prev + 1) % galleryImages.length;
+      setActiveLightboxImage(galleryImages[nextIdx].src);
       return nextIdx;
     });
   };
 
   const handlePrevLightbox = () => {
     setLightboxIndex((prev) => {
-      const prevIdx = (prev - 1 + filteredImages.length) % filteredImages.length;
-      setActiveLightboxImage(filteredImages[prevIdx].src);
+      const prevIdx = (prev - 1 + galleryImages.length) % galleryImages.length;
+      setActiveLightboxImage(galleryImages[prevIdx].src);
       return prevIdx;
     });
   };
@@ -101,7 +95,7 @@ export default function App() {
               viewport={{ once: true }}
               className="absolute right-0 top-0 w-[82%] h-[75%] overflow-hidden bg-[#0c2415] border border-gold/15 shadow-2xl group cursor-pointer"
             >
-              <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" />
+              <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" alt="About Pool" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -109,7 +103,7 @@ export default function App() {
               viewport={{ once: true }}
               className="absolute left-0 bottom-0 w-[58%] h-[50%] overflow-hidden bg-[#1a1205] border-4 border-[#0a140f] shadow-2xl group cursor-pointer"
             >
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" />
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" alt="About Bedroom" />
             </motion.div>
             <motion.div
               initial={{ rotate: -15, scale: 0.8 }}
@@ -131,7 +125,7 @@ export default function App() {
           >
             <div className="flex items-center gap-4 mb-4">
               <span className="w-12 h-[1px] bg-gold" />
-              <span className="text-xs tracking-[0.3em] uppercase text-gold font-sans">Our Sanctuary</span>
+              <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold">OUR SANCTUARY</span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight mb-6">
               A Private Escape <br />
@@ -158,7 +152,7 @@ export default function App() {
       <section className="relative py-24 bg-[#061009] z-10 border-t border-gold/10" id="amenities">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="text-xs tracking-[0.3em] uppercase text-gold mb-4 block font-sans">Ultra-Custom Features</span>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-4">ULTRA-CUSTOM FEATURES</span>
             <h2 className="font-serif text-4xl md:text-5xl font-light text-white mb-16">World-Class <span className="italic text-gold text-glow">Services</span></h2>
           </motion.div>
 
@@ -173,20 +167,20 @@ export default function App() {
                 onClick={() => setSelectedAmenityDetail(amenity)}
                 className="relative aspect-[1/1.1] overflow-hidden bg-luxury-dark border border-gold/10 group cursor-pointer flex flex-col justify-end p-8 text-left"
               >
-                <img src={amenity.image} className="absolute inset-0 w-full h-full object-cover opacity-35 transition-all duration-700 group-hover:opacity-55 group-hover:scale-105" />
+                <img src={amenity.image} className="absolute inset-0 w-full h-full object-cover opacity-35 transition-all duration-700 group-hover:opacity-55 group-hover:scale-105" alt={amenity.name} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040a06] via-transparent to-transparent z-10" />
                 <div className="relative z-20">
                   <div className="w-12 h-12 border border-gold/40 flex items-center justify-center mb-6 bg-black/60 group-hover:bg-gold transition-all duration-300">
-                    {idx === 0 && <Waves className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {idx === 1 && <Flame className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {idx === 2 && <Utensils className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {idx === 3 && <BedDouble className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {idx === 4 && <Heart className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {idx === 5 && <Users className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {amenity.icon === "Waves" && <Waves className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {amenity.icon === "Flame" && <Flame className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {amenity.icon === "Utensils" && <Utensils className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {amenity.icon === "BedDouble" && <BedDouble className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {amenity.icon === "Heart" && <Heart className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {amenity.icon === "Users" && <Users className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
                   </div>
-                  <span className="text-[10px] tracking-widest uppercase text-gold block mb-2 font-sans">{amenity.tagline}</span>
+                  <span className="text-[10px] tracking-widest uppercase text-gold block mb-2 font-sans font-semibold">{amenity.tagline}</span>
                   <h3 className="font-serif text-xl text-white mb-2">{amenity.name}</h3>
-                  <div className="flex items-center gap-1.5 text-[10px] text-gold/80 group-hover:translate-x-1 transition-all font-sans">
+                  <div className="flex items-center gap-1.5 text-[10px] text-gold/80 group-hover:translate-x-1 transition-all font-sans font-semibold">
                     <span className="uppercase tracking-widest">Customize this stay</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
@@ -197,28 +191,28 @@ export default function App() {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Section - EXACTLY AS REQUESTED */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase text-gold mb-3 block font-sans">Captured Moments</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-light text-white">Pure <span className="italic text-gold text-glow">Seclusion</span></h2>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
         </div>
         
-        <div className="grid grid-cols-12 gap-4 px-6 md:px-12 max-w-7xl mx-auto">
-          {filteredImages.map((image, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-12 max-w-7xl mx-auto">
+          {galleryImages.map((image, idx) => (
             <motion.div
               key={image.src}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               onClick={() => handleOpenLightbox(idx)}
-              className={`${image.size} relative overflow-hidden cursor-pointer border border-gold/15 group`}
+              className="relative overflow-hidden cursor-pointer border border-gold/15 group aspect-[3/4] bg-[#0c1a10]"
             >
-              <img src={image.src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src={image.src} className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-110" alt={image.title} />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500" />
-              <div className="absolute bottom-6 left-6 z-20">
-                <span className="text-[9px] tracking-widest uppercase text-gold mb-1 block font-sans">{image.category}</span>
-                <h4 className="font-serif text-xl text-white">{image.title}</h4>
+              <div className="absolute bottom-6 left-6 z-20 text-left">
+                <h4 className="font-serif text-lg italic text-white mb-1">{image.title}</h4>
+                <span className="text-[9px] tracking-widest uppercase text-gold font-sans font-semibold">{image.category}</span>
               </div>
             </motion.div>
           ))}
@@ -228,7 +222,7 @@ export default function App() {
       {/* Patrons Section */}
       <section className="py-24 bg-[#050b07] z-10 border-t border-gold/10" id="testimonials">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <span className="text-xs tracking-[0.3em] uppercase text-gold mb-6 block font-sans">Guest Chronicles</span>
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold mb-6 block">GUEST CHRONICLES</span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-white mb-20">Words of Our <span className="italic text-gold text-glow">Patrons</span></h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {reviewsList.map((rev) => (
@@ -241,7 +235,7 @@ export default function App() {
                   <div className="w-10 h-10 border border-gold/30 bg-gold/10 flex items-center justify-center font-bold text-xs text-gold">{rev.authorInitials}</div>
                   <div>
                     <span className="text-xs font-semibold text-white block font-sans">{rev.author}</span>
-                    <span className="text-[10px] text-white/50 uppercase tracking-widest font-sans">{rev.stayType}</span>
+                    <span className="text-[10px] text-white/50 uppercase tracking-widest font-sans font-medium">{rev.stayType}</span>
                   </div>
                 </div>
               </div>
@@ -261,17 +255,17 @@ export default function App() {
               </p>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">Navigation</h4>
+              <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">NAVIGATION</h4>
               <ul className="space-y-4 text-xs text-white/60 font-light font-sans">
-                <li><a href="#about" className="hover:text-gold transition-colors">Story</a></li>
-                <li><a href="#amenities" className="hover:text-gold transition-colors">Amenities</a></li>
-                <li><a href="#gallery" className="hover:text-gold transition-colors">Gallery</a></li>
-                <li><a href="#testimonials" className="hover:text-gold transition-colors">Patrons</a></li>
+                <li><a href="#about" className="hover:text-gold transition-colors uppercase tracking-widest">Story</a></li>
+                <li><a href="#amenities" className="hover:text-gold transition-colors uppercase tracking-widest">Amenities</a></li>
+                <li><a href="#gallery" className="hover:text-gold transition-colors uppercase tracking-widest">Gallery</a></li>
+                <li><a href="#testimonials" className="hover:text-gold transition-colors uppercase tracking-widest">Patrons</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">Contact</h4>
-              <ul className="space-y-4 text-xs text-white/60 font-light font-sans">
+              <h4 className="text-[10px] uppercase tracking-widest text-gold font-bold mb-8 font-sans">CONTACT</h4>
+              <ul className="space-y-4 text-xs text-white/60 font-light font-sans uppercase tracking-widest">
                 <li>+91 99772 20204</li>
                 <li>concierge@dggreenfarms.com</li>
                 <li>Parsvnath City, Indore</li>
@@ -296,8 +290,8 @@ export default function App() {
               <button onClick={() => setSelectedAmenityDetail(null)} className="absolute top-6 right-6 text-white/70 hover:text-white transition-all"><X className="w-6 h-6" /></button>
               <Sparkles className="w-8 h-8 text-gold mb-6" />
               <h2 className="font-serif text-3xl font-light text-white mb-2">{selectedAmenityDetail.name}</h2>
-              <span className="text-[10px] tracking-widest text-gold uppercase mb-8 block font-sans">{selectedAmenityDetail.tagline}</span>
-              <p className="text-white/80 leading-relaxed mb-10 text-sm font-sans">{selectedAmenityDetail.description}</p>
+              <span className="text-[10px] tracking-widest text-gold uppercase mb-8 block font-sans font-semibold">{selectedAmenityDetail.tagline}</span>
+              <p className="text-white/80 leading-relaxed mb-10 text-sm font-sans font-light">{selectedAmenityDetail.description}</p>
               <button onClick={() => handleWhatsAppContact(`Inquiry about ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark text-xs tracking-widest uppercase font-bold hover:bg-gold-light transition-colors font-sans">Inquire via WhatsApp</button>
             </motion.div>
           </motion.div>

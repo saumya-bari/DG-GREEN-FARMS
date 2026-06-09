@@ -21,20 +21,20 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: "Story", href: "#about" },
+    { name: "About", href: "#about" },
     { name: "Amenities", href: "#amenities" },
     { name: "Gallery", href: "#gallery" },
     { name: "Reviews", href: "#testimonials" },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? 'bg-luxury-dark/90 backdrop-blur-md py-4 border-b border-gold/10' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? 'bg-luxury-dark/95 backdrop-blur-md py-4 border-b border-gold/10 shadow-2xl' : 'bg-transparent py-8'}`}>
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#" className="flex items-center gap-3 group">
           <img 
             src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" 
             alt="DG Green Farms" 
-            className="w-10 h-10 object-cover rounded-full border border-gold/30"
+            className="w-10 h-10 object-cover rounded-full border border-gold/30 shadow-lg"
           />
           <span className="font-serif text-xl tracking-wider text-white group-hover:text-gold transition-colors duration-300 uppercase">
             DG <span className="font-light italic">Green Farms</span>
@@ -46,16 +46,16 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
             <a
               key={link.name}
               href={link.href}
-              className="text-[10px] tracking-[0.3em] uppercase text-white/70 hover:text-gold transition-colors duration-300 font-medium font-sans"
+              className="text-[10px] tracking-[0.3em] uppercase text-white/70 hover:text-gold transition-colors duration-300 font-semibold font-sans"
             >
               {link.name}
             </a>
           ))}
           <button
             onClick={onBookClick}
-            className="px-6 py-2.5 border border-gold text-gold text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans"
+            className="px-6 py-2.5 border border-gold text-gold text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans shadow-lg"
           >
-            Reservations
+            RESERVE ESCAPE
           </button>
         </div>
 
@@ -87,7 +87,7 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-serif italic text-white hover:text-gold transition-colors"
+                className="text-2xl font-serif italic text-white hover:text-gold transition-colors uppercase tracking-widest"
               >
                 {link.name}
               </a>
@@ -97,9 +97,9 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
                 onBookClick();
                 setIsMenuOpen(false);
               }}
-              className="mt-4 px-12 py-4 bg-gold text-luxury-dark text-sm tracking-[0.2em] uppercase font-bold"
+              className="mt-4 px-12 py-4 bg-gold text-luxury-dark text-sm tracking-[0.2em] uppercase font-bold shadow-xl"
             >
-              Book Now
+              Reserve Escape
             </button>
           </motion.div>
         )}

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { motion } from "framer-motion";
@@ -34,7 +33,7 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
         >
           <div className="flex items-center justify-center gap-2 mb-8">
             <Sparkles className="w-4 h-4 text-gold" />
-            <span className="text-[10px] tracking-[0.5em] uppercase text-gold font-sans font-medium">Escape to the Extraordinary</span>
+            <span className="text-[10px] tracking-[0.5em] uppercase text-gold font-sans font-semibold">ESCAPE TO THE EXTRAORDINARY</span>
           </div>
           
           <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-tight mb-10">
@@ -55,7 +54,7 @@ export default function LuxuryHero({ onBookClick, onExploreClick }: LuxuryHeroPr
             </button>
             <button
               onClick={onExploreClick}
-              className="px-10 py-4 bg-transparent border border-gold/40 hover:border-gold text-gold text-xs tracking-[0.3em] uppercase font-bold transition-all duration-300 hover:bg-gold/5 cursor-pointer"
+              className="px-10 py-4 bg-transparent border border-gold/40 hover:border-gold text-gold text-xs tracking-[0.3em] uppercase font-bold transition-all duration-300 hover:bg-gold/5 cursor-pointer shadow-lg"
             >
               View Gallery
             </button>
