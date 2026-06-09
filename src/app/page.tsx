@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -335,6 +336,95 @@ export default function App() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reserve Escape Section */}
+      <section className="relative py-24 bg-[#060e0a] z-10 border-t border-gold/10 overflow-hidden" id="booking">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <div className="gold-line-split mb-6">
+              <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">RESERVE ESCAPE</span>
+            </div>
+            <h2 className="font-serif text-5xl md:text-7xl font-light text-white leading-tight mb-8">
+              Begin Your <br />
+              <span className="italic text-gold text-glow">Luxury Journey</span>
+            </h2>
+            <p className="text-white/60 text-sm md:text-base max-w-3xl mx-auto leading-relaxed font-light font-sans mb-16">
+              We render bespoke boutique resort takeover experiences. Connect directly with our reservation coordinator via WhatsApp or phone call to secure prioritized suite dates and custom pool/jacuzzi setups instantly.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {/* Direct Reservations Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-10 md:p-12 border border-gold/15 bg-[#0a1410] text-left flex flex-col justify-between group hover:border-gold/30 transition-all duration-500"
+            >
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">DIRECT RESERVATIONS</h4>
+                <p className="text-white/50 text-xs md:text-sm leading-relaxed mb-10 font-light font-sans">
+                  Select your package or custom duration requirements. We assist you live with rates, availability, and romantic decor preparations.
+                </p>
+                <div className="flex items-center gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
+                  <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">IMMEDIATE HOTLINE</span>
+                    <span className="text-lg font-bold text-white font-serif">+91 99772 20204</span>
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => handleWhatsAppContact()}
+                className="w-full py-5 bg-gold text-luxury-dark text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold-light transition-all duration-300 font-sans shadow-lg"
+              >
+                BOOK VIA WHATSAPP
+              </button>
+            </motion.div>
+
+            {/* Estate Coordinates Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-10 md:p-12 border border-gold/15 bg-[#0a1410] text-left flex flex-col justify-between group hover:border-gold/30 transition-all duration-500"
+            >
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">ESTATE COORDINATES</h4>
+                <p className="text-white/50 text-xs md:text-sm leading-relaxed mb-10 font-light font-sans">
+                  Perfectly situated within a high-security premium gated farm community just minutes outside Indore.
+                </p>
+                <div className="flex items-start gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
+                  <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">RESORT LOCATION ADDRESS</span>
+                    <span className="text-xs md:text-sm text-white/80 leading-relaxed font-light font-sans">
+                      69, 70, Parsvnath City, Satwik Green, Manglaya Sadak, Rahu Khedi, Indore, MP 453771
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Parsvnath+City+Satwik+Green+Manglaya+Sadak+Rahu+Khedi+Indore"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans text-center shadow-lg"
+              >
+                GET ROUTE DIRECTIONS
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
