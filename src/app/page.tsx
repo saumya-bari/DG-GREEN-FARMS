@@ -4,6 +4,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Phone,
+  MapPin,
   Sparkles,
   Star,
   Check,
@@ -18,8 +20,6 @@ import {
   ChevronRight,
   ShieldCheck,
   Award,
-  Phone,
-  MapPin,
   Users
 } from "lucide-react";
 import LuxuryNavbar from "@/components/LuxuryNavbar";
@@ -134,7 +134,7 @@ export default function App() {
       <LuxuryNavbar onBookClick={() => handleWhatsAppContact()} />
       <LuxuryHero onBookClick={() => handleWhatsAppContact()} onExploreClick={() => scrollToSection("gallery-section")} />
 
-      {/* Story Section */}
+      {/* Story Section - OUR SANCTUARY */}
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10" id="about">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative h-[500px] md:h-[650px] w-full">
@@ -145,7 +145,11 @@ export default function App() {
               viewport={{ once: true }}
               className="absolute right-0 top-0 w-[90%] h-[75%] overflow-hidden bg-[#0c2415] border border-gold/15 shadow-2xl group cursor-pointer"
             >
-              <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" alt="DG Green Farms Pool" />
+              <img 
+                src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg" 
+                className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" 
+                alt="DG Green Farms Pool" 
+              />
               <div className="absolute inset-0 bg-black/20" />
             </motion.div>
 
@@ -157,7 +161,11 @@ export default function App() {
               transition={{ delay: 0.2 }}
               className="absolute left-0 bottom-0 w-[55%] h-[48%] overflow-hidden bg-[#1a1205] border-4 border-[#0a140f] shadow-2xl group cursor-pointer z-20"
             >
-              <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" alt="Master Suite" />
+              <img 
+                src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg" 
+                className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" 
+                alt="Master Suite" 
+              />
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <span className="text-[8px] tracking-[0.3em] uppercase text-gold/80 font-bold mb-1">STAYCATION HAVEN</span>
@@ -192,7 +200,7 @@ export default function App() {
           >
             <div className="flex items-center gap-4 mb-6">
               <span className="w-12 h-[1px] bg-gold" />
-              <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">INSIDE THE SANCTUARY</span>
+              <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">OUR SANCTUARY</span>
             </div>
             <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-tight mb-8">
               A Private Escape <br />
