@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -254,7 +253,7 @@ export default function App() {
 
       {/* Story Section - OUR SANCTUARY */}
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10" id="about">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="relative h-[500px] md:h-[650px] w-full">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -302,7 +301,7 @@ export default function App() {
               <div className="flex flex-col items-center">
                 <Award className="w-6 h-6 text-luxury-dark mb-1" />
                 <span className="font-serif text-2xl font-bold block">4.7 ★</span>
-                <span className="text-[8px] tracking-[0.2em] uppercase font-bold block mt-1">55 GOOGLE REVIEWS</span>
+                <span className="text-[8px] tracking-[0.2em] uppercase font-bold block mt-1">GOOGLE REVIEWS</span>
               </div>
             </motion.div>
           </div>
@@ -313,26 +312,24 @@ export default function App() {
             viewport={{ once: true }}
             className="text-left"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <span className="w-12 h-[1px] bg-gold" />
-              <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">OUR SANCTUARY</span>
-            </div>
             <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-tight mb-8">
               A Private Escape <br />
               <span className="italic text-gold text-glow">Coutured for Serenity</span>
             </h2>
-            <div className="space-y-6 text-white/80 text-sm md:text-base leading-relaxed mb-12 font-light font-sans max-w-xl">
+            <div className="space-y-6 text-white/80 text-sm md:text-base leading-relaxed mb-8 font-light font-sans max-w-xl">
               <p>
                 Turn your weekend into a mini-vacation at <strong>DG Green Farms</strong> 🌿✨ 
                 Experience good vibes, cozy deluxe rooms, premium pool dips, and unforgettable moments with family and friends! 💛 
                 Whether relaxing under our outdoor Gazebo, strolling the lush organic garden, or enjoying top-tier gourmet food prepared with personal care by <strong>Chef Vivek Sharma and Rahul</strong>, DG Green Farms is the perfect gated destination for parties, get-togethers, and weekend escapes in Indore.
               </p>
-              <p className="italic text-white/40 text-xs">
+              <p className="italic text-white/40 text-xs mt-4">
                 "Chef Vivek Sharma and Rahul did a fantastic job with food and service." Your escape includes complete privacy and helpful, highly rated on-site support.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-12 pt-8 border-t border-gold/15">
+            <div className="w-full h-px bg-gold/15 mb-12" />
+
+            <div className="grid grid-cols-2 gap-y-12 gap-x-8">
               <div>
                 <span className="text-4xl text-gold font-serif block mb-1">
                   <Counter target={4} suffix="+" />
@@ -344,6 +341,18 @@ export default function App() {
                   <Counter target={100} suffix="%" />
                 </span>
                 <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNBIASED PRIVACY</span>
+              </div>
+              <div>
+                <span className="text-4xl text-gold font-serif block mb-1">
+                  24/7
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">BUTLER HOSPITALITY</span>
+              </div>
+              <div>
+                <span className="text-4xl text-gold font-serif block mb-1">
+                  ∞
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNFORGETTABLE VIBE</span>
               </div>
             </div>
           </motion.div>
