@@ -246,7 +246,6 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeLightboxImage, selectedCategory]);
 
-  // Variants for staggered animations in the Specifications section
   const listContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -703,7 +702,11 @@ export default function App() {
 
       {/* Reserve Escape Section */}
       <section className="relative py-24 bg-[#060e0a] z-10 border-t border-gold/10 overflow-hidden" id="booking">
-        <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
+        {/* Subtle Golden Glow Effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(201,168,76,0.15),transparent_70%)] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(201,168,76,0.05),transparent_60%)] pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto px-6 md:px-12 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
