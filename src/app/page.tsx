@@ -54,157 +54,143 @@ export default function App() {
 
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1920&h=1080&auto=format&fit=crop",
-      title: "Sunset Pool Majesty",
-      category: "Private Pool",
-      description: "Exclusive heated pool illuminated with twilight fiber-optics under Indore's evening sky.",
-      size: "col-span-12 md:col-span-8 h-[280px] md:h-[450px]"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&h=800&auto=format&fit=crop",
-      title: "Deluxe Master Sanctuary",
-      category: "Luxury Suite",
-      description: "Plush designer bedrooms with smart dimming lights and elegant pool-view glass panes.",
-      size: "col-span-12 md:col-span-4 h-[280px] md:h-[450px]"
-    },
-    {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920471/D9_vxkjho.png",
       title: "Imperial Canopy Seclusion",
       category: "Romantic Decor",
-      description: "A private evening setup adorned with golden accents, custom balloons, and rich red fabrics for romantic isolation.",
+      description: "A private evening setup adorned with golden accents and rich fabrics.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[300px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920469/D5_ynpe38.png",
       title: "Floating Rose Serenade",
       category: "Romantic Decor",
-      description: "Red rose petals floating gently on the pool water under a canopy of warm romantic fairy-lights.",
+      description: "Red rose petals floating gently on the pool water under fairy-lights.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[300px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D6_vvq67s.png",
       title: "Midnight Solitude Spa",
       category: "Wellness",
-      description: "Warm ambient lit wellness bath designed for private evening meditation and supreme relaxation.",
+      description: "Warm ambient lit wellness bath designed for private relaxation.",
       size: "col-span-12 md:col-span-4 h-[300px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D8_v9samu.png",
       title: "Velvet Rendezvous Setup",
       category: "Romantic Decor",
-      description: "An opulent crimson and gold candlelit pathway welcoming couples with unmatched grandness.",
+      description: "An opulent crimson and gold candlelit pathway welcoming couples.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920460/d1_wpnfzg.png",
       title: "Cascading Petal Spa",
       category: "Wellness",
-      description: "Indulgent deep-soak tub carpeted with fresh red rose petals and surrounded by ambient glowing candles.",
+      description: "Indulgent deep-soak tub carpeted with fresh red rose petals.",
       size: "col-span-12 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920447/D3_fctofk.png",
       title: "Gourmet Evening Canopy",
       category: "Fine Dining",
-      description: "Intimate dining experience with premium silverware, handpicked flowers, and a designated butler corner.",
+      description: "Intimate dining experience with premium silverware and handpicked flowers.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920446/D4_d8nz9n.png",
       title: "Whispering Red Canopy",
       category: "Romantic Decor",
-      description: "A dreamy poolside cabana draped in crimson and warm light, curated exclusively for timeless celebrations.",
+      description: "A dreamy poolside cabana draped in crimson and warm light.",
       size: "col-span-12 md:col-span-4 h-[280px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920445/D2_myhzij.png",
       title: "Floating Champagne Breakfast",
       category: "Fine Dining",
-      description: "A stunning floating breakfast tray with premium champagnes and fresh treats launched on the crystal pool.",
-      size: "col-span-12 md:col-span-4 h-[280px] md:h-[340px]"
+      description: "A stunning floating tray with premium treats on the crystal pool.",
+      size: "col-span-12 md:col-span-4 h-[340px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920436/C2_l033eb.png",
       title: "Azure Infinity Deck",
       category: "Private Pool",
-      description: "Crystal clear pool view extending into lush green outlines under dynamic custom illumination.",
-      size: "col-span-12 md:col-span-8 h-[280px] md:h-[340px]"
+      description: "Crystal clear pool view extending into lush green outlines.",
+      size: "col-span-12 md:col-span-8 h-[340px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920418/B1_lnes8l.png",
       title: "Presidential Retreat Suite",
       category: "Luxury Suite",
-      description: "Bespoke king-sized chamber featuring opulent fabrics, warm backlighting, and private pool-deck access.",
-      size: "col-span-12 md:col-span-4 h-[280px] md:h-[340px]"
+      description: "Bespoke king-sized chamber featuring opulent fabrics.",
+      size: "col-span-12 md:col-span-4 h-[340px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920417/A5_euuohd.png",
       title: "Secret Palm Oasis",
       category: "Estate View",
-      description: "Vibrant palm-covered parameters ensuring your stay is completely hidden from the outside world.",
+      description: "Vibrant palm-covered parameters ensuring stay is hidden.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920414/B3_kie4py.png",
       title: "Luminescent Master Bedroom",
       category: "Luxury Suite",
-      description: "Perfectly balanced contemporary master bedroom with plush leather detailing and integrated smart home controls.",
+      description: "Perfectly balanced master bedroom with leather detailing.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920411/A4_v4t56r.png",
       title: "Lush Sanctuary Pathway",
       category: "Estate View",
-      description: "Impeccably manicured green gardens and cobblestoned garden walking paths leading to the main luxury villa.",
+      description: "Impeccably manicured green gardens and garden walking paths.",
       size: "col-span-12 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920403/A7_vnkmdi.png",
       title: "Symmetrical Zen Lawns",
       category: "Estate View",
-      description: "Expertly landscaped garden vistas framed by tropical footage, showcasing the vast green luxury boundary.",
+      description: "Landscaped garden vistas framed by tropical footage.",
       size: "col-span-12 md:col-span-6 h-[280px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920382/A3_sdom9l.png",
       title: "Tropical Courtyard",
       category: "Estate View",
-      description: "Sun-dappled pathways lined with bright magenta bougainvillea and tall palm trees.",
+      description: "Sun-dappled pathways lined with bright bougainvillea.",
       size: "col-span-12 md:col-span-6 h-[280px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920462/C1_wiinti.png",
       title: "Reflective Evening Waters",
       category: "Private Pool",
-      description: "Fountain jets arching into the warm water, creating a perfect sensory auditory landscape.",
+      description: "Fountain jets arching into the warm water.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920376/A2_pd83ek.png",
       title: "Majestic Palm Guarded Gate",
       category: "Estate View",
-      description: "Tall exotic palm trees guarding the grand entry lines of the farm.",
+      description: "Tall exotic palm trees guarding the grand entry lines.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920371/A6_txpr1w.png",
       title: "Emerald Privacy Walls",
       category: "Estate View",
-      description: "Thick natural foliage barriers providing absolute secure visual block.",
+      description: "Thick natural foliage barriers providing secure visual block.",
       size: "col-span-12 md:col-span-4 h-[260px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920370/A1_d5mlfv.png",
       title: "Grand Facade Arrival",
       category: "Estate View",
-      description: "An monumental look of DG Green Farms' entrance, radiating pure architectural elegance.",
-      size: "col-span-12 md:col-span-8 h-[280px] md:h-[340px]"
+      description: "An monumental look of DG Green Farms' entrance.",
+      size: "col-span-12 md:col-span-8 h-[340px]"
     },
     {
       src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920396/A8_ocq5vf.png",
       title: "Sunlit Meadow Retreat",
       category: "Estate View",
-      description: "Soft golden rays filtered through thick trees, illuminating a manicured lawn.",
+      description: "Soft golden rays filtered through thick trees.",
       size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
     },
     {
@@ -264,7 +250,6 @@ export default function App() {
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10" id="about">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative h-[500px] md:h-[650px] w-full">
-            {/* Main Pool Image */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -279,7 +264,6 @@ export default function App() {
               <div className="absolute inset-0 bg-black/20" />
             </motion.div>
 
-            {/* Overlapping Bedroom Image */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -302,7 +286,6 @@ export default function App() {
               </div>
             </motion.div>
 
-            {/* Award Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -404,7 +387,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Gallery Section - Visual Sanctuary */}
+      {/* Visual Sanctuary Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">Visual Sanctuary</span>
@@ -437,11 +420,15 @@ export default function App() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5 }}
                 onClick={() => handleOpenLightbox(idx)}
-                className={`${image.size} relative overflow-hidden cursor-pointer border border-gold/15 group bg-[#0c1a10]`}
+                className={`${image.size} relative overflow-hidden cursor-pointer border border-gold/15 group bg-[#020503]`}
               >
-                <img src={image.src} className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-110" alt={image.title} />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500" />
-                <div className="absolute bottom-6 left-6 z-20 text-left">
+                <img 
+                  src={image.src} 
+                  className="w-full h-full object-contain transition-transform duration-[4s] group-hover:scale-105" 
+                  alt={image.title} 
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
+                <div className="absolute bottom-6 left-6 z-20 text-left pointer-events-none">
                   <span className="text-[9px] tracking-widest uppercase text-gold font-sans font-semibold block mb-1">{image.category}</span>
                   <h4 className="font-serif text-lg italic text-white">{image.title}</h4>
                 </div>
@@ -529,7 +516,6 @@ export default function App() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            {/* Direct Reservations Card */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -559,7 +545,6 @@ export default function App() {
               </button>
             </motion.div>
 
-            {/* Estate Coordinates Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
