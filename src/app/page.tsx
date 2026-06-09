@@ -31,6 +31,7 @@ export default function App() {
   const [selectedAmenityDetail, setSelectedAmenityDetail] = useState<any>(null);
   const [activeLightboxImage, setActiveLightboxImage] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -45,8 +46,12 @@ export default function App() {
     window.open(`https://wa.me/919977220204?text=${encodeURIComponent(text)}`, "_blank");
   };
 
+  const filteredImages = selectedCategory === "All"
+    ? galleryImages
+    : galleryImages.filter((img) => img.category === selectedCategory);
+
   const handleOpenLightbox = (index: number) => {
-    setActiveLightboxImage(galleryImages[index].src);
+    setActiveLightboxImage(filteredImages[index].src);
     setLightboxIndex(index);
   };
 
@@ -54,16 +59,16 @@ export default function App() {
 
   const handleNextLightbox = () => {
     setLightboxIndex((prev) => {
-      const nextIdx = (prev + 1) % galleryImages.length;
-      setActiveLightboxImage(galleryImages[nextIdx].src);
+      const nextIdx = (prev + 1) % filteredImages.length;
+      setActiveLightboxImage(filteredImages[nextIdx].src);
       return nextIdx;
     });
   };
 
   const handlePrevLightbox = () => {
     setLightboxIndex((prev) => {
-      const prevIdx = (prev - 1 + galleryImages.length) % galleryImages.length;
-      setActiveLightboxImage(galleryImages[prevIdx].src);
+      const prevIdx = (prev - 1 + filteredImages.length) % filteredImages.length;
+      setActiveLightboxImage(filteredImages[prevIdx].src);
       return prevIdx;
     });
   };
@@ -77,13 +82,13 @@ export default function App() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeLightboxImage]);
+  }, [activeLightboxImage, selectedCategory]);
 
   return (
     <main className="relative min-h-screen bg-luxury-dark text-white selection:bg-gold/30 overflow-x-hidden">
       <CustomCursor />
       <LuxuryNavbar onBookClick={() => handleWhatsAppContact()} />
-      <LuxuryHero onBookClick={() => handleWhatsAppContact()} onExploreClick={() => scrollToSection("gallery")} />
+      <LuxuryHero onBookClick={() => handleWhatsAppContact()} onExploreClick={() => scrollToSection("gallery-section")} />
 
       {/* Story Section */}
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10" id="about">
@@ -192,30 +197,46 @@ export default function App() {
       </section>
 
       {/* Gallery Section */}
-      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery">
+      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-12 max-w-7xl mx-auto">
-          {galleryImages.map((image, idx) => (
-            <motion.div
-              key={image.src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              onClick={() => handleOpenLightbox(idx)}
-              className="relative overflow-hidden cursor-pointer border border-gold/15 group aspect-[3/4] bg-[#0c1a10]"
+        <div className="flex md:flex-wrap items-center gap-2 mb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto">
+          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor", "Fine Dining", "Estate View"].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:border-gold/30 hover:text-gold'}`}
             >
-              <img src={image.src} className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-110" alt={image.title} />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500" />
-              <div className="absolute bottom-6 left-6 z-20 text-left">
-                <h4 className="font-serif text-lg italic text-white mb-1">{image.title}</h4>
-                <span className="text-[9px] tracking-widest uppercase text-gold font-sans font-semibold">{image.category}</span>
-              </div>
-            </motion.div>
+              {cat}
+            </button>
           ))}
+        </div>
+
+        <div className="grid grid-cols-12 gap-4 px-6 md:px-12 max-w-7xl mx-auto">
+          <AnimatePresence mode="popLayout">
+            {filteredImages.map((image, idx) => (
+              <motion.div
+                layout
+                key={image.src}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
+                onClick={() => handleOpenLightbox(idx)}
+                className={`${image.size} relative overflow-hidden cursor-pointer border border-gold/15 group bg-[#0c1a10]`}
+              >
+                <img src={image.src} className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-110" alt={image.title} />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500" />
+                <div className="absolute bottom-6 left-6 z-20 text-left">
+                  <span className="text-[9px] tracking-widest uppercase text-gold font-sans font-semibold block mb-1">{image.category}</span>
+                  <h4 className="font-serif text-lg italic text-white">{image.title}</h4>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </section>
 
@@ -244,12 +265,53 @@ export default function App() {
         </div>
       </section>
 
+      {/* Verified Estate Specifications Panel */}
+      <section className="py-24 bg-[#0a1410] z-10 border-t border-gold/15">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-12">
+            <div>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-gold font-sans font-semibold block mb-2">ESTATE BLUEPRINTS & CONVENIENCES</span>
+              <h3 className="font-serif text-3xl font-light text-white leading-tight">Verified Estate <span className="italic text-gold text-glow">Specifications</span></h3>
+            </div>
+            <div className="bg-[#0c2415]/80 border border-gold/25 px-4 py-2 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-500" />
+              <span className="text-[10px] uppercase font-sans tracking-widest text-white/90">Google Maps Verified Property</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Property Accessibility", icon: "♿", items: ["Assistive hearing loop installed", "Wheelchair-accessible entrance", "Wheelchair-accessible car park", "Seating & restrooms accessible"] },
+              { title: "Parking & Valet", icon: "🚗", items: ["Free on-site parking garage", "Secure parking lot inside gates", "Free spacious street parking", "Fully gated 24/7 private security"] },
+              { title: "Pet & Garden Policy", icon: "🐾", items: ["Dogs allowed inside villa spaces", "Vast organic garden lawns & Gazebo", "Spacious layouts for night walks", "Perfect for celebrations & gatherings"] }
+            ].map((spec) => (
+              <div key={spec.title} className="p-8 bg-[#060e0a] border border-gold/10 group hover:border-gold/30 transition-all duration-500">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 border border-gold/20 flex items-center justify-center text-xl bg-gold/5">{spec.icon}</div>
+                  <h4 className="font-serif text-lg text-white">{spec.title}</h4>
+                </div>
+                <ul className="space-y-3">
+                  {spec.items.map(item => (
+                    <li key={item} className="flex items-center gap-3 text-xs text-white/60 font-light">
+                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-luxury-dark border-t border-gold/15 pt-20 pb-12 z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
             <div className="col-span-1 md:col-span-2 space-y-6">
-              <span className="font-serif text-2xl tracking-widest text-gold uppercase">DG <span className="text-white italic font-light">Green Farms</span></span>
+              <div className="flex items-center gap-3">
+                <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" className="w-10 h-10 rounded-full border border-gold/30" alt="Logo" />
+                <span className="font-serif text-2xl tracking-widest text-gold uppercase">DG <span className="text-white italic font-light">Green Farms</span></span>
+              </div>
               <p className="text-white/50 text-xs max-w-sm leading-relaxed font-light font-sans">
                 Indore's premiere boutique resort. Orchestrating private luxury stays, candlelight jacuzzi layouts, and authentic farm culinary retreats.
               </p>
@@ -273,7 +335,10 @@ export default function App() {
             </div>
           </div>
           <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/40 uppercase tracking-widest font-sans">
-            <span>&copy; {new Date().getFullYear()} DG Green Farms. All Rights Reserved.</span>
+            <div className="flex flex-col gap-1">
+              <span>&copy; {new Date().getFullYear()} DG Green Farms. All Rights Reserved.</span>
+              <span className="text-gold/50 normal-case">Website developed by SAUMYA BARI</span>
+            </div>
             <div className="flex gap-8">
               <a href="#" className="hover:text-gold">Privacy</a>
               <a href="#" className="hover:text-gold">Terms</a>
@@ -292,7 +357,10 @@ export default function App() {
               <h2 className="font-serif text-3xl font-light text-white mb-2">{selectedAmenityDetail.name}</h2>
               <span className="text-[10px] tracking-widest text-gold uppercase mb-8 block font-sans font-semibold">{selectedAmenityDetail.tagline}</span>
               <p className="text-white/80 leading-relaxed mb-10 text-sm font-sans font-light">{selectedAmenityDetail.description}</p>
-              <button onClick={() => handleWhatsAppContact(`Inquiry about ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark text-xs tracking-widest uppercase font-bold hover:bg-gold-light transition-colors font-sans">Inquire via WhatsApp</button>
+              <div className="flex flex-col gap-3">
+                <button onClick={() => handleWhatsAppContact(`Inquiry about ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark text-xs tracking-widest uppercase font-bold hover:bg-gold-light transition-colors font-sans">Inquire via WhatsApp</button>
+                <a href="tel:+919977220204" className="w-full py-4 border border-white/20 text-white text-xs tracking-widest uppercase font-bold text-center hover:border-gold hover:text-gold transition-all">Call Coordinator</a>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -301,8 +369,19 @@ export default function App() {
       <AnimatePresence>
         {activeLightboxImage && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-6 backdrop-blur-lg" onClick={handleCloseLightbox}>
-            <button onClick={handleCloseLightbox} className="absolute top-10 right-10 text-white hover:text-gold transition-colors z-[10001]"><X className="w-8 h-8" /></button>
-            <motion.img initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} src={activeLightboxImage} className="max-w-full max-h-[85vh] object-contain border border-gold/20 shadow-2xl" onClick={(e) => e.stopPropagation()} />
+            <button onClick={handleCloseLightbox} className="absolute top-10 right-10 text-white hover:text-gold transition-colors z-[10001] border border-white/20 px-4 py-2 text-xs tracking-widest uppercase flex items-center gap-2"><X className="w-4 h-4" /> Close</button>
+            <button onClick={(e) => { e.stopPropagation(); handlePrevLightbox(); }} className="absolute left-8 text-white/50 hover:text-gold transition-all"><ArrowLeft size={48} strokeWidth={1} /></button>
+            <button onClick={(e) => { e.stopPropagation(); handleNextLightbox(); }} className="absolute right-8 text-white/50 hover:text-gold transition-all"><ArrowRight size={48} strokeWidth={1} /></button>
+            
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="relative max-w-5xl max-h-[85vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+              <img src={activeLightboxImage} className="max-w-full max-h-[70vh] object-contain border border-gold/20 shadow-2xl" alt="Lightbox" />
+              <div className="mt-8 text-center bg-black/50 backdrop-blur-md p-6 border border-white/10 w-full">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-gold block mb-2">{filteredImages[lightboxIndex].category}</span>
+                <h4 className="font-serif text-2xl italic text-white mb-2">{filteredImages[lightboxIndex].title}</h4>
+                <p className="text-white/60 text-xs font-light max-w-2xl mx-auto">{filteredImages[lightboxIndex].description}</p>
+                <div className="mt-4 text-[9px] text-white/30 tracking-widest font-mono">PHOTO {lightboxIndex + 1} OF {filteredImages.length}</div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

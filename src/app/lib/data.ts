@@ -1,4 +1,32 @@
-import { PropertyAmenity, StayPackage, ReviewItem } from "./types";
+export interface PropertyAmenity {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  icon: string;
+  accentColor: string;
+  svgRepresentation: string;
+  image: string;
+}
+
+export interface StayPackage {
+  id: string;
+  name: string;
+  tagline: string;
+  badge: string;
+  features: string[];
+  priceDesc: string;
+  isFeatured?: boolean;
+}
+
+export interface ReviewItem {
+  id: string;
+  rating: number;
+  text: string;
+  author: string;
+  stayType: string;
+  authorInitials: string;
+}
 
 export const amenitiesList: PropertyAmenity[] = [
   {
@@ -66,31 +94,73 @@ export const amenitiesList: PropertyAmenity[] = [
 export const galleryImages = [
   {
     src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop",
-    title: "Twilight Pool Ambience",
-    category: "MASTER ESTATE SECTION",
+    title: "Sunset Pool Majesty",
+    category: "Private Pool",
     description: "Exclusive heated pool illuminated with twilight fiber-optics under Indore's evening sky.",
-    size: "col-span-12 md:col-span-3"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&h=600&auto=format&fit=crop",
-    title: "Poolside Organic Dining",
-    category: "CULINARY EXPERIENCE",
-    description: "Intimate poolside dining experience with gourmet recipes prepared by our master chef.",
-    size: "col-span-12 md:col-span-3"
+    size: "col-span-12 md:col-span-8 h-[280px] md:h-[380px]"
   },
   {
     src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop",
-    title: "Surprise Romantic Decor",
-    category: "BESPOKE ANNIVERSARIES",
-    description: "Master suites transformed with candlelight and rose petals for timeless celebrations.",
-    size: "col-span-12 md:col-span-3"
+    title: "Deluxe Master Sanctuary",
+    category: "Luxury Suite",
+    description: "Plush designer bedrooms with smart dimming lights and elegant pool-view glass panes.",
+    size: "col-span-12 md:col-span-4 h-[280px] md:h-[380px]"
   },
   {
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&h=600&auto=format&fit=crop",
-    title: "Repose Swing Sanctuary",
-    category: "GARDEN SWING REPRIEVES",
-    description: "Lush greenery surrounds your private garden retreat with luxury cocoon swings.",
-    size: "col-span-12 md:col-span-3"
+    src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920471/D9_vxkjho.png",
+    title: "Imperial Canopy Seclusion",
+    category: "Romantic Decor",
+    description: "A private evening setup adorned with golden accents, custom balloons, and rich red fabrics for romantic isolation.",
+    size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+  },
+  {
+    src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920469/D5_ynpe38.png",
+    title: "Floating Rose Serenade",
+    category: "Romantic Decor",
+    description: "Red rose petals floating gently on the pool water under a canopy of warm romantic fairy-lights.",
+    size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+  },
+  {
+    src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D6_vvq67s.png",
+    title: "Midnight Solitude Spa",
+    category: "Wellness",
+    description: "Warm ambient lit wellness bath designed for private evening meditation and supreme relaxation.",
+    size: "col-span-12 md:col-span-4 h-[280px]"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1540555700478-4be289fbece8?q=80&w=800&h=600&auto=format&fit=crop",
+    title: "Chromotherapy Jacuzzi",
+    category: "Wellness",
+    description: "Heated hydro-massage bubble jacuzzi with therapeutic light grids and romantic candle lights.",
+    size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+  },
+  {
+    src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D8_v9samu.png",
+    title: "Velvet Rendezvous Setup",
+    category: "Romantic Decor",
+    description: "An opulent crimson and gold candlelit pathway welcoming couples with unmatched grandness.",
+    size: "col-span-12 sm:col-span-6 md:col-span-4 h-[260px]"
+  },
+  {
+    src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920460/d1_wpnfzg.png",
+    title: "Cascading Petal Spa",
+    category: "Wellness",
+    description: "Indulgent deep-soak tub carpeted with fresh red rose petals and surrounded by ambient glowing candles.",
+    size: "col-span-12 md:col-span-4 h-[260px]"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1522673607200-164883eecd0c?q=80&w=800&h=600&auto=format&fit=crop",
+    title: "Bespoke Love Canopy",
+    category: "Romantic Decor",
+    description: "Handcrafted rose paths, customized balloons, and candle arrays celebrating couples' special moments.",
+    size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
+  },
+  {
+    src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920447/D3_fctofk.png",
+    title: "Gourmet Evening Canopy",
+    category: "Fine Dining",
+    description: "Intimate dining experience with premium silverware, handpicked flowers, and a designated butler corner.",
+    size: "col-span-12 sm:col-span-6 md:col-span-4 h-[280px]"
   }
 ];
 
