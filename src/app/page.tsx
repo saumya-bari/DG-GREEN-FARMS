@@ -522,42 +522,80 @@ export default function App() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-10 md:p-12 border border-gold/15 bg-[#0a1410] text-left flex flex-col justify-between group hover:border-gold/30 transition-all duration-500">
-              <div>
-                <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">DIRECT RESERVATIONS</h4>
-                <div className="flex items-center gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
-                  <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark">
-                    <Phone className="w-5 h-5" />
-                  </div>
+            {/* Direct Reservations Card with GlareHover */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              className="h-full group"
+            >
+              <GlareHover
+                width="100%"
+                height="100%"
+                background="#0a1410"
+                borderColor="rgba(201, 168, 76, 0.15)"
+                borderRadius="0px"
+                glareColor="#c9a84c"
+                glareOpacity={0.15}
+                className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30 transition-all duration-500"
+              >
+                <div className="flex flex-col justify-between h-full w-full text-left">
                   <div>
-                    <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">IMMEDIATE HOTLINE</span>
-                    <span className="text-lg font-bold text-white font-serif">+91 99772 20204</span>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">DIRECT RESERVATIONS</h4>
+                    <div className="flex items-center gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
+                      <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark">
+                        <Phone className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">IMMEDIATE HOTLINE</span>
+                        <span className="text-lg font-bold text-white font-serif">+91 99772 20204</span>
+                      </div>
+                    </div>
                   </div>
+                  <button onClick={() => handleWhatsAppContact()} className="w-full py-5 bg-gold text-luxury-dark text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold-light transition-all duration-300 font-sans shadow-lg">
+                    BOOK VIA WHATSAPP
+                  </button>
                 </div>
-              </div>
-              <button onClick={() => handleWhatsAppContact()} className="w-full py-5 bg-gold text-luxury-dark text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold-light transition-all duration-300 font-sans shadow-lg">
-                BOOK VIA WHATSAPP
-              </button>
+              </GlareHover>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-10 md:p-12 border border-gold/15 bg-[#0a1410] text-left flex flex-col justify-between group hover:border-gold/30 transition-all duration-500">
-              <div>
-                <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">ESTATE COORDINATES</h4>
-                <div className="flex items-start gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
-                  <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
+            {/* Estate Coordinates Card with GlareHover */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              className="h-full group"
+            >
+              <GlareHover
+                width="100%"
+                height="100%"
+                background="#0a1410"
+                borderColor="rgba(201, 168, 76, 0.15)"
+                borderRadius="0px"
+                glareColor="#c9a84c"
+                glareOpacity={0.15}
+                className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30 transition-all duration-500"
+              >
+                <div className="flex flex-col justify-between h-full w-full text-left">
                   <div>
-                    <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">RESORT LOCATION ADDRESS</span>
-                    <span className="text-xs md:text-sm text-white/80 leading-relaxed font-light font-sans">
-                      69, 70, Parsvnath City, Satwik Green, Manglaya Sadak, Rahu Khedi, Indore, MP 453771
-                    </span>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">ESTATE COORDINATES</h4>
+                    <div className="flex items-start gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
+                      <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark shrink-0">
+                        <MapPin className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">RESORT LOCATION ADDRESS</span>
+                        <span className="text-xs md:text-sm text-white/80 leading-relaxed font-light font-sans">
+                          69, 70, Parsvnath City, Satwik Green, Manglaya Sadak, Rahu Khedi, Indore, MP 453771
+                        </span>
+                      </div>
+                    </div>
                   </div>
+                  <a href="https://www.google.com/maps/search/?api=1&query=DG+Green+Farms+–+Perfect+Destination+for+Parties+%26+Gatherings+in+Indore" target="_blank" rel="noopener noreferrer" className="w-full py-5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans text-center shadow-lg">
+                    GET ROUTE DIRECTIONS
+                  </a>
                 </div>
-              </div>
-              <a href="https://www.google.com/maps/search/?api=1&query=DG+Green+Farms+–+Perfect+Destination+for+Parties+%26+Gatherings+in+Indore" target="_blank" rel="noopener noreferrer" className="w-full py-5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans text-center shadow-lg">
-                GET ROUTE DIRECTIONS
-              </a>
+              </GlareHover>
             </motion.div>
           </div>
         </div>
