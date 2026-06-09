@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import GlitchText from "./GlitchText";
 
 interface LuxuryNavbarProps {
@@ -30,7 +30,6 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
     { label: "About", href: "#about" },
     { label: "Amenities", href: "#amenities" },
     { label: "Gallery", href: "#gallery-section" },
-    { label: "Reviews", href: "#testimonials" },
   ];
 
   return (

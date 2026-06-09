@@ -6,7 +6,6 @@ import {
   Phone,
   MapPin,
   Sparkles,
-  Star,
   Check,
   Waves,
   Flame,
@@ -19,8 +18,7 @@ import {
   Users,
   ShieldCheck,
   Instagram,
-  CalendarHeart,
-  Loader2
+  ArrowDown
 } from "lucide-react";
 import LuxuryNavbar from "@/components/LuxuryNavbar";
 import LuxuryHero from "@/components/LuxuryHero";
@@ -30,33 +28,10 @@ import CircularGallery from "@/components/ui/CircularGallery";
 import GlareHover from "@/components/GlareHover";
 import Threads from "@/components/Threads";
 import GlitchText from "@/components/GlitchText";
-import { amenitiesList, reviewsList } from "@/app/lib/data";
-import { aiCelebrationsArchitect, AiCelebrationsArchitectOutput } from '@/ai/flows/ai-celebrations-architect-flow'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { amenitiesList } from "@/app/lib/data";
 
 export default function App() {
   const [selectedAmenityDetail, setSelectedAmenityDetail] = useState<any>(null);
-  const [loading, setLoading] = useState(false)
-  const [guestCount, setGuestCount] = useState(10)
-  const [eventType, setEventType] = useState('birthday party')
-  const [aiResult, setAiResult] = useState<AiCelebrationsArchitectOutput | null>(null)
-
-  const handleArchitect = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    try {
-      const data = await aiCelebrationsArchitect({ guestCount, eventType })
-      setAiResult(data)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -195,83 +170,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* AI Celebrations Architect Section */}
-      <section id="architect" className="relative py-24 bg-[#050b07] z-10 border-t border-gold/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-gold tracking-[0.4em] uppercase text-[10px] mb-4 block font-bold">THE ALCHEMIST OF EVENTS</span>
-              <h2 className="font-serif text-4xl md:text-6xl text-white mb-8 leading-tight">AI Celebrations <span className="italic text-gold text-glow">Architect</span></h2>
-              <p className="text-white/60 text-base font-light leading-relaxed mb-10 max-w-lg">
-                Planning a gathering? Our resident AI Architect crafts bespoke themes and curates gourmet menus perfectly tailored to the intimacy of your event at DG Green Farms.
-              </p>
-              <form onSubmit={handleArchitect} className="space-y-6 max-w-md">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label className="text-gold uppercase text-[9px] tracking-widest font-bold">GUEST COUNT</Label>
-                    <Input type="number" value={guestCount} onChange={(e) => setGuestCount(Number(e.target.value))} className="bg-[#0a1410] border-gold/20 text-white h-12 focus:border-gold transition-colors" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label className="text-gold uppercase text-[9px] tracking-widest font-bold">EVENT NATURE</Label>
-                    <Select value={eventType} onValueChange={setEventType}>
-                      <SelectTrigger className="bg-[#0a1410] border-gold/20 text-white h-12">
-                        <SelectValue placeholder="Select type" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[#0a1410] border-gold/20 text-white">
-                        {['birthday party', 'corporate retreat', 'wedding anniversary', 'family reunion', 'romantic getaway'].map(t => (
-                          <SelectItem key={t} value={t} className="capitalize hover:bg-gold/10">{t}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                <Button disabled={loading} className="w-full bg-gold text-luxury-dark hover:bg-gold-light h-14 tracking-widest uppercase text-[10px] font-bold shadow-xl">
-                  {loading ? <Loader2 className="animate-spin mr-2" /> : <Sparkles className="mr-2" size={16} />}
-                  Architect My Celebration
-                </Button>
-              </form>
-            </div>
-            <div className="min-h-[400px] flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                {!aiResult && !loading && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center p-12 border border-dashed border-gold/20 rounded-none flex flex-col items-center">
-                    <CalendarHeart className="text-gold/20 mb-6" size={80} strokeWidth={0.5} />
-                    <p className="text-white/40 font-light text-sm italic">Enter your details to generate <br/> a personalized event proposal.</p>
-                  </motion.div>
-                )}
-                {loading && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center">
-                    <Loader2 className="text-gold animate-spin mb-4" size={48} />
-                    <p className="text-gold tracking-widest uppercase text-[9px] font-bold">Architecting Excellence...</p>
-                  </motion.div>
-                )}
-                {aiResult && !loading && (
-                  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="w-full">
-                    <Card className="bg-[#0a1410] border-gold/20 rounded-none shadow-2xl overflow-hidden">
-                      <CardHeader className="border-b border-gold/10 pb-6">
-                        <CardTitle className="font-serif text-gold text-2xl italic">Your Curated Proposal</CardTitle>
-                      </CardHeader>
-                      <CardContent className="pt-8 space-y-8">
-                        <div>
-                          <h4 className="text-[9px] tracking-[0.3em] uppercase text-gold font-bold mb-3">EVENT THEME</h4>
-                          <p className="text-white text-base font-light leading-relaxed">{aiResult.eventTheme}</p>
-                        </div>
-                        <div>
-                          <h4 className="text-[9px] tracking-[0.3em] uppercase text-gold font-bold mb-3">GOURMET DINNER MENU</h4>
-                          <div className="whitespace-pre-line text-white/60 font-light text-sm italic border-l border-gold/20 pl-6 py-2">
-                            {aiResult.dinnerMenu}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Captured Moments Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
@@ -281,7 +179,7 @@ export default function App() {
         <div className="relative w-full overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#040906] to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#040906] to-transparent z-20 pointer-events-none" />
-          <motion.div className="flex gap-6 w-max" animate={{ x: ["-50%", "0%"] }} transition={{ ease: "linear", duration: 40, repeat: Infinity }}>
+          <motion.div className="flex gap-6 w-max" animate={{ x: ["0%", "-50%"] }} transition={{ ease: "linear", duration: 40, repeat: Infinity }}>
             {[...scrollingImages, ...scrollingImages].map((img, idx) => (
               <div key={idx} className="relative w-[300px] md:w-[450px] aspect-[4/5] bg-luxury-dark border border-gold/15 overflow-hidden group">
                 <img src={img.src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={img.title} />
