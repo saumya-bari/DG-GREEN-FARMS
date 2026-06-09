@@ -198,6 +198,16 @@ export default function App() {
     }
   ];
 
+  const scrollingImages = [
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", category: "MASTER ESTATE SECTION" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", category: "CULINARY EXPERIENCE" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg", title: "Surprise Romantic Decor", category: "BESPOKE ANNIVERSARIES" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004639/t3_hp3s6m.jpg", title: "Repose Swing Sanctuary", category: "GARDEN SWING REPRIEVES" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t5_oyvkbx.jpg", title: "Bespoke Celebration Lawns", category: "ESTATE GROUNDS" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004637/t6_yf6uq3.jpg", title: "Heated Wellness Haven", category: "SPA & WELLNESS" },
+    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg", title: "Midnight Jacuzzi Glow", category: "NIGHT EXPERIENCE" }
+  ];
+
   const filteredImages = selectedCategory === "All"
     ? galleryImages
     : galleryImages.filter((img) => img.category === selectedCategory);
@@ -380,6 +390,37 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* See the Beauty - Scrolling Section */}
+      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="captured-moments">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
+        </div>
+        
+        <div className="relative w-full overflow-hidden">
+          <motion.div 
+            className="flex gap-6 w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              ease: "linear",
+              duration: 40,
+              repeat: Infinity
+            }}
+          >
+            {[...scrollingImages, ...scrollingImages].map((img, idx) => (
+              <div key={idx} className="relative w-[300px] md:w-[450px] aspect-[4/5] bg-luxury-dark border border-gold/15 overflow-hidden group">
+                <img src={img.src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={img.title} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                <div className="absolute bottom-8 left-8 text-left">
+                   <h4 className="font-serif text-xl md:text-2xl text-white mb-1 italic">{img.title}</h4>
+                   <span className="text-[10px] tracking-[0.2em] uppercase text-gold font-sans font-semibold block">{img.category}</span>
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -632,7 +673,7 @@ export default function App() {
           <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-left space-y-1">
               <div className="text-[10px] text-white/40 uppercase tracking-widest font-sans">
-                &copy; 2026 DG GREEN FARMS. ALL RIGHTS RESERVED. REGISTERED STAYCATION RESORT.
+                &copy; {new Date().getFullYear()} DG GREEN FARMS. ALL RIGHTS RESERVED. REGISTERED STAYCATION RESORT.
               </div>
               <div className="text-[10px] text-gold uppercase tracking-widest font-sans font-medium">
                 Website developed by SAUMYA BARI
