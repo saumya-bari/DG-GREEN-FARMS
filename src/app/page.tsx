@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react";
@@ -170,30 +171,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Captured Moments Section */}
-      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
-        </div>
-        <div className="relative w-full overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#040906] to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#040906] to-transparent z-20 pointer-events-none" />
-          <motion.div className="flex gap-6 w-max" animate={{ x: ["0%", "-50%"] }} transition={{ ease: "linear", duration: 40, repeat: Infinity }}>
-            {[...scrollingImages, ...scrollingImages].map((img, idx) => (
-              <div key={idx} className="relative w-[300px] md:w-[450px] aspect-[4/5] bg-luxury-dark border border-gold/15 overflow-hidden group">
-                <img src={img.src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={img.title} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-8 left-8 text-left">
-                   <h4 className="font-serif text-xl md:text-2xl text-white mb-1 italic">{img.title}</h4>
-                   <span className="text-[10px] tracking-[0.2em] uppercase text-gold font-sans font-semibold block">{img.category}</span>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* Visual Sanctuary Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
@@ -219,7 +196,6 @@ export default function App() {
             </motion.div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-            {/* Card 1 */}
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8 }} className="relative overflow-hidden group">
               <GlareHover width="100%" height="100%" background="rgba(6, 14, 10, 0.6)" borderColor="rgba(201, 168, 76, 0.1)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.2} className="!block p-10 h-full border border-gold/10 hover:border-gold/30">
                 <div className="flex items-center gap-4 mb-8">
@@ -233,7 +209,6 @@ export default function App() {
                 </motion.ul>
               </GlareHover>
             </motion.div>
-            {/* Card 2 */}
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8 }} transition={{ delay: 0.1 }} className="relative overflow-hidden group">
               <GlareHover width="100%" height="100%" background="rgba(6, 14, 10, 0.6)" borderColor="rgba(201, 168, 76, 0.1)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.2} className="!block p-10 h-full border border-gold/10 hover:border-gold/30">
                 <div className="flex items-center gap-4 mb-8">
@@ -247,7 +222,6 @@ export default function App() {
                 </motion.ul>
               </GlareHover>
             </motion.div>
-            {/* Card 3 */}
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8 }} transition={{ delay: 0.2 }} className="relative overflow-hidden group">
               <GlareHover width="100%" height="100%" background="rgba(6, 14, 10, 0.6)" borderColor="rgba(201, 168, 76, 0.1)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.2} className="!block p-10 h-full border border-gold/10 hover:border-gold/30">
                 <div className="flex items-center gap-4 mb-8">
