@@ -171,12 +171,12 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040a06] via-transparent to-transparent z-10" />
                 <div className="relative z-20">
                   <div className="w-12 h-12 border border-gold/40 flex items-center justify-center mb-6 bg-black/60 group-hover:bg-gold transition-all duration-300">
-                    {amenity.icon === "Waves" && <Waves className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {amenity.icon === "Flame" && <Flame className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {amenity.icon === "Utensils" && <Utensils className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {amenity.icon === "BedDouble" && <BedDouble className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {amenity.icon === "Heart" && <Heart className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
-                    {amenity.icon === "Users" && <Users className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {idx === 0 && <Waves className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {idx === 1 && <Flame className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {idx === 2 && <Utensils className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {idx === 3 && <BedDouble className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {idx === 4 && <Heart className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
+                    {idx === 5 && <Users className="w-5 h-5 text-gold group-hover:text-luxury-dark" />}
                   </div>
                   <span className="text-[10px] tracking-widest uppercase text-gold block mb-2 font-sans font-semibold">{amenity.tagline}</span>
                   <h3 className="font-serif text-xl text-white mb-2">{amenity.name}</h3>

@@ -25,37 +25,27 @@
     --ring: 49 53% 54%;
     --radius: 0rem;
     
-    --font-serif: 'Cormorant Garamond', serif;
-    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
   body {
     @apply bg-luxury-dark text-[#fdfcfa] font-sans;
+    margin: 0;
+  }
+  html {
+    @apply scroll-smooth;
+    scroll-padding-top: 80px;
   }
 }
 
-/* Hide scrollbar for clean luxury presentation but preserve functionality */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #060e0a;
-}
-::-webkit-scrollbar-thumb {
-  background: #c9a84c;
-  border-radius: 3px;
-}
-
-.text-glow {
-  text-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
-}
-
+/* Custom animations for glowing background effects and fluid luxury stay vibes */
 @keyframes waterFluid {
   0%, 100% {
     border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
@@ -82,4 +72,41 @@
 
 .floating-element {
   animation: floatUpDown 6s ease-in-out infinite;
+}
+
+/* Custom horizontal gold rule styling */
+.gold-line-split {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.gold-line-split::before,
+.gold-line-split::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c 50%, transparent);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
+}
+
+/* Webkit Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060e0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9a84c;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.8);
 }

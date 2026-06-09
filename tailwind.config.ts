@@ -10,11 +10,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['var(--font-serif)', 'serif'],
-        sans: ['var(--font-sans)', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       colors: {
         'luxury-dark': '#060e0a',
+        'luxury-green': '#0a1f12',
         gold: {
           DEFAULT: '#c9a84c',
           light: '#e8d5a3',
@@ -31,8 +32,8 @@ export default {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#c9a84c',
+          foreground: '#060e0a',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
