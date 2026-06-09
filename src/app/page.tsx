@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -384,58 +383,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Visual Sanctuary Section */}
-      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">Visual Sanctuary</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">A Glimpse into <span className="italic text-gold text-glow">Pure Seclusion</span></h2>
-          <p className="mt-4 text-white/50 text-xs md:text-sm font-light max-w-2xl leading-relaxed">
-            Experience the visual serenity of DG Green Farms Indore. Every frame captures the exquisite synergy between high-end architectural craft and breathtaking organic natural settings. Click any frame to view in high definition.
-          </p>
-        </div>
-        
-        <div className="flex md:flex-wrap items-center gap-2 mb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto scrollbar-none">
-          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor", "Fine Dining", "Estate View"].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 whitespace-nowrap ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:text-gold hover:border-gold/30'}`}
-            >
-              {cat === "All" ? "All Spaces" : cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-12 gap-4 px-6 md:px-12 max-w-7xl mx-auto">
-          <AnimatePresence mode="popLayout">
-            {filteredImages.map((image, idx) => (
-              <motion.div
-                layout
-                key={image.src}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5 }}
-                onClick={() => handleOpenLightbox(idx)}
-                className={`${image.size} relative overflow-hidden cursor-pointer border border-gold/15 group bg-[#020503]`}
-              >
-                <img 
-                  src={image.src} 
-                  className="w-full h-full object-contain transition-transform duration-[4s] group-hover:scale-105" 
-                  alt={image.title} 
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
-                <div className="absolute bottom-6 left-6 z-20 text-left pointer-events-none">
-                  <span className="text-[9px] tracking-widest uppercase text-gold font-sans font-semibold block mb-1">{image.category}</span>
-                  <h4 className="font-serif text-lg italic text-white">{image.title}</h4>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
+      {/* Testimonials Section - WORDS OF OUR PATRONS */}
       <section className="relative py-24 bg-[#050b07] z-10 border-t border-gold/10" id="testimonials">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
           <motion.div
@@ -488,6 +436,57 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Visual Sanctuary Section */}
+      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">Visual Sanctuary</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">A Glimpse into <span className="italic text-gold text-glow">Pure Seclusion</span></h2>
+          <p className="mt-4 text-white/50 text-xs md:text-sm font-light max-w-2xl leading-relaxed">
+            Experience the visual serenity of DG Green Farms Indore. Every frame captures the exquisite synergy between high-end architectural craft and breathtaking organic natural settings. Click any frame to view in high definition.
+          </p>
+        </div>
+        
+        <div className="flex md:flex-wrap items-center gap-2 mb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto scrollbar-none">
+          {["All", "Private Pool", "Luxury Suite", "Wellness", "Romantic Decor", "Fine Dining", "Estate View"].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 font-sans text-[10px] tracking-widest uppercase border transition-all duration-300 whitespace-nowrap ${selectedCategory === cat ? 'bg-gold text-luxury-dark border-gold' : 'bg-transparent text-white/50 border-white/10 hover:text-gold hover:border-gold/30'}`}
+            >
+              {cat === "All" ? "All Spaces" : cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-12 gap-4 px-6 md:px-12 max-w-7xl mx-auto">
+          <AnimatePresence mode="popLayout">
+            {filteredImages.map((image, idx) => (
+              <motion.div
+                layout
+                key={image.src}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
+                onClick={() => handleOpenLightbox(idx)}
+                className={`${image.size} relative overflow-hidden cursor-pointer border border-gold/15 group bg-[#020503]`}
+              >
+                <img 
+                  src={image.src} 
+                  className="w-full h-full object-contain transition-transform duration-[4s] group-hover:scale-105" 
+                  alt={image.title} 
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
+                <div className="absolute bottom-6 left-6 z-20 text-left pointer-events-none">
+                  <span className="text-[9px] tracking-widest uppercase text-gold font-sans font-semibold block mb-1">{image.category}</span>
+                  <h4 className="font-serif text-lg italic text-white">{image.title}</h4>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </section>
 
@@ -689,4 +688,3 @@ export default function App() {
     </main>
   );
 }
-
