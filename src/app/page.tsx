@@ -47,6 +47,16 @@ export default function App() {
     window.open(`https://wa.me/919977220204?text=${encodeURIComponent(text)}`, "_blank");
   };
 
+  const beautyImages = [
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", desc: "MASTER ESTATE SECTION" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", desc: "CULINARY EXPERIENCE" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004639/t3_hp3s6m.jpg", title: "Surprise Romantic Decor", desc: "BESPOKE ANNIVERSARIES" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg", title: "Luminescent Master Suite", desc: "DELUXE ACCOMMODATION" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t5_oyvkbx.jpg", title: "Private Group Retreat", desc: "SECURE GATHERINGS" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg", title: "Wellness Jacuzzi Spa", desc: "HYDROTHERAPY" },
+    { url: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004637/t6_yf6uq3.jpg", title: "Lush Sanctuary Lawns", desc: "OPEN AIR ZEN" },
+  ];
+
   const visualSanctuaryItems = [
     { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920471/D9_vxkjho.png", text: "Imperial Seclusion" },
     { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920469/D5_ynpe38.png", text: "Floating Serenade" },
@@ -147,6 +157,39 @@ export default function App() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* See the Beauty Section (Infinite Scroll) */}
+      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
+        </div>
+        
+        <div className="relative w-full">
+          {/* Gradient Fades on edges */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#040906] to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#040906] to-transparent z-20 pointer-events-none" />
+          
+          <div className="flex overflow-hidden">
+            <motion.div 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+              className="flex gap-4 shrink-0 px-4"
+            >
+              {[...beautyImages, ...beautyImages].map((img, idx) => (
+                <div key={idx} className="relative w-[300px] md:w-[420px] aspect-[4/5] shrink-0 border border-white/5 overflow-hidden group">
+                   <img src={img.url} alt={img.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+                   <div className="absolute bottom-8 left-8 right-8 transition-transform duration-500 group-hover:-translate-y-2">
+                     <h4 className="font-serif text-xl text-white mb-1.5">{img.title}</h4>
+                     <p className="text-[9px] tracking-[0.25em] uppercase text-gold font-bold font-sans">{img.desc}</p>
+                   </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
