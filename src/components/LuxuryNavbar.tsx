@@ -33,10 +33,10 @@ export default function LuxuryNavbar({ onBookClick }: LuxuryNavbarProps) {
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#" className="flex items-center gap-3 group">
           <div className="w-10 h-10 border border-gold/30 rounded-full flex items-center justify-center bg-gold/5 group-hover:bg-gold transition-all duration-500">
-             <span className="text-gold group-hover:text-luxury-dark font-serif text-lg">V</span>
+             <span className="text-gold group-hover:text-luxury-dark font-serif text-lg">G</span>
           </div>
           <span className="font-serif text-xl tracking-wider text-white group-hover:text-gold transition-colors duration-300 uppercase">
-            Verdant <span className="font-light italic">Luxe</span>
+            DG <span className="font-light italic">Green Farms</span>
           </span>
         </a>
 
