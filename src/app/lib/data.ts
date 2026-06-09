@@ -145,7 +145,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-1",
     rating: 5,
-    text: "We had a wonderful family stay at DG Green Farms. The place is spacious, safe, and well-maintained. Kids enjoyed the pool while we relaxed in the open areas.",
+    text: "We had a wonderful family stay at DG Green Farms. The place is spacious, safe, and well-maintained. Kids enjoyed the pool while we relaxed in the open areas. Food was fresh and tasty. Will definitely visit again!",
     author: "Saloni Ankulnerkar",
     stayType: "Family Staycation",
     authorInitials: "SA"
@@ -153,7 +153,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-2",
     rating: 5,
-    text: "Amazing experience at DG Green Farms! Beautiful property, very clean rooms, peaceful environment and excellent service. The pool and jacuzzi were a highlight.",
+    text: "Amazing experience at DG Green Farms! Beautiful property, very clean rooms, peaceful environment and excellent service. The pool and jacuzzi were a highlight, and the food was delicious. Perfect place for family, couples, and friends. Highly recommended!",
     author: "Saloni Jummani",
     stayType: "Local Guide · 23 reviews",
     authorInitials: "SJ"
@@ -161,7 +161,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-3",
     rating: 5,
-    text: "Incredible Experience! DG Green Farms exceeded all our expectations. Great location, beautiful pool, and a wonderful atmosphere for a night out with friends.",
+    text: "Incredible Experience 😀 DG Green Farms exceeded all our expectations. Great location, beautiful pool, and a wonderful atmosphere for a night out with friends. 10/10 would recommend for anyone in Indore looking for a top-tier event venue.",
     author: "Aditya Verma",
     stayType: "Weekend Event Venue",
     authorInitials: "AV"

@@ -283,6 +283,62 @@ export default function App() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="relative py-24 bg-[#050b07] z-10 border-t border-gold/10" id="testimonials">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-4">
+              GUEST CHRONICLES
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">
+              Words of Our <span className="italic text-gold text-glow">Patrons</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {reviewsList.map((rev, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                key={rev.id}
+                className="p-10 border border-gold/15 bg-[#0a1410] text-left flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-1 text-gold mb-8">
+                    {Array.from({ length: rev.rating }).map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />
+                    ))}
+                  </div>
+                  <p className="font-serif italic text-white/90 text-base leading-relaxed mb-10">
+                    "{rev.text}"
+                  </p>
+                </div>
+                <div className="flex items-center gap-5 pt-8 border-t border-gold/10">
+                  <div className="w-12 h-12 border border-gold/30 flex items-center justify-center bg-gold/5 font-sans font-bold text-xs text-gold">
+                    {rev.authorInitials}
+                  </div>
+                  <div>
+                    <span className="font-sans font-bold text-sm text-white block mb-0.5">
+                      {rev.author}
+                    </span>
+                    <span className="text-[10px] uppercase tracking-widest text-white/40 block">
+                      {rev.stayType}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-luxury-dark border-t border-gold/15 pt-20 pb-12 z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
