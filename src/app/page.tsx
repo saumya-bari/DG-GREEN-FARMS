@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Phone,
@@ -18,7 +18,9 @@ import {
   Award,
   Users,
   ShieldCheck,
-  Instagram
+  Instagram,
+  CalendarHeart,
+  Loader2
 } from "lucide-react";
 import LuxuryNavbar from "@/components/LuxuryNavbar";
 import LuxuryHero from "@/components/LuxuryHero";
@@ -29,9 +31,32 @@ import GlareHover from "@/components/GlareHover";
 import Threads from "@/components/Threads";
 import GlitchText from "@/components/GlitchText";
 import { amenitiesList, reviewsList } from "@/app/lib/data";
+import { aiCelebrationsArchitect, AiCelebrationsArchitectOutput } from '@/ai/flows/ai-celebrations-architect-flow'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function App() {
   const [selectedAmenityDetail, setSelectedAmenityDetail] = useState<any>(null);
+  const [loading, setLoading] = useState(false)
+  const [guestCount, setGuestCount] = useState(10)
+  const [eventType, setEventType] = useState('birthday party')
+  const [aiResult, setAiResult] = useState<AiCelebrationsArchitectOutput | null>(null)
+
+  const handleArchitect = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const data = await aiCelebrationsArchitect({ guestCount, eventType })
+      setAiResult(data)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -67,7 +92,7 @@ export default function App() {
     { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920371/A6_txpr1w.png", text: "Emerald Privacy" },
     { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920370/A1_d5mlfv.png", text: "Grand Facade" },
     { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920396/A8_ocq5vf.png", text: "Sunlit Meadow" },
-    { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920464/D7_bjclin.png", text: "Bespoke Anniversary" }
+    { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", text: "Luxe Pool View" }
   ];
 
   const scrollingImages = [
@@ -82,12 +107,7 @@ export default function App() {
 
   const listContainerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   };
 
   const listItemVariants = {
@@ -105,49 +125,19 @@ export default function App() {
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10" id="about">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="relative h-[500px] md:h-[650px] w-full">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="absolute right-0 top-0 w-[90%] h-[75%] overflow-hidden bg-[#0c2415] border border-gold/15 shadow-2xl group cursor-pointer"
-            >
-              <img 
-                src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg" 
-                className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" 
-                alt="DG Green Farms Pool" 
-              />
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="absolute right-0 top-0 w-[90%] h-[75%] overflow-hidden bg-[#0c2415] border border-gold/15 shadow-2xl group cursor-pointer">
+              <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" alt="DG Green Farms Pool" />
               <div className="absolute inset-0 bg-black/20" />
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="absolute left-0 bottom-0 w-[55%] h-[48%] overflow-hidden bg-[#1a1205] border-4 border-[#0a140f] shadow-2xl group cursor-pointer z-20"
-            >
-              <img 
-                src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg" 
-                className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" 
-                alt="Master Suite" 
-              />
+            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="absolute left-0 bottom-0 w-[55%] h-[48%] overflow-hidden bg-[#1a1205] border-4 border-[#0a140f] shadow-2xl group cursor-pointer z-20">
+              <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" alt="Master Suite" />
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <span className="text-[8px] tracking-[0.3em] uppercase text-gold/80 font-bold mb-1">STAYCATION HAVEN</span>
                 <h4 className="font-serif italic text-white text-base mb-4">Bespoke Twilight Pool</h4>
-                <div className="mt-auto pt-4 border-t border-white/10">
-                  <span className="text-[7px] tracking-[0.4em] uppercase text-white/40 font-bold">MASTER SUITE</span>
-                </div>
               </div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="absolute right-[5%] bottom-[5%] z-30 bg-gold text-luxury-dark p-6 text-center shadow-2xl min-w-[150px]"
-            >
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="absolute right-[5%] bottom-[5%] z-30 bg-gold text-luxury-dark p-6 text-center shadow-2xl min-w-[150px]">
               <div className="flex flex-col items-center">
                 <Award className="w-6 h-6 text-luxury-dark mb-1" />
                 <span className="font-serif text-2xl font-bold block">4.7 ★</span>
@@ -155,52 +145,17 @@ export default function App() {
               </div>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-left"
-          >
-            <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-tight mb-8">
-              A Private Escape <br />
-              <span className="italic text-gold text-glow">Coutured for Serenity</span>
-            </h2>
+          <motion.div initial={{ opacity: 0, y: 35 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-left">
+            <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-tight mb-8">A Private Escape <br /> <span className="italic text-gold text-glow">Coutured for Serenity</span></h2>
             <div className="space-y-6 text-white/80 text-sm md:text-base leading-relaxed mb-8 font-light font-sans max-w-xl">
-              <p>
-                Turn your weekend into a mini-vacation at <strong>DG Green Farms</strong> 🌿✨ 
-                Experience good vibes, cozy deluxe rooms, premium pool dips, and unforgettable moments with family and friends! 💛 
-                Whether relaxing under our outdoor Gazebo, strolling the lush organic garden, or enjoying top-tier gourmet food prepared with personal care by <strong>Chef Vivek Sharma and Rahul</strong>, DG Green Farms is the perfect gated destination for parties, get-togethers, and weekend escapes in Indore.
-              </p>
+              <p>Turn your weekend into a mini-vacation at <strong>DG Green Farms</strong> 🌿✨ Experience good vibes, cozy deluxe rooms, premium pool dips, and unforgettable moments with family and friends! 💛</p>
             </div>
-
             <div className="w-full h-px bg-gold/15 mb-12" />
-
             <div className="grid grid-cols-2 gap-y-12 gap-x-8">
-              <div>
-                <span className="text-4xl text-gold font-serif block mb-1">
-                  <Counter target={4} suffix="+" />
-                </span>
-                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">DELUXE SUITES</span>
-              </div>
-              <div>
-                <span className="text-4xl text-gold font-serif block mb-1">
-                  <Counter target={100} suffix="%" />
-                </span>
-                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNBIASED PRIVACY</span>
-              </div>
-              <div>
-                <span className="text-4xl text-gold font-serif block mb-1">
-                  24/7
-                </span>
-                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">BUTLER HOSPITALITY</span>
-              </div>
-              <div>
-                <span className="text-4xl text-gold font-serif block mb-1">
-                  ∞
-                </span>
-                <span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNFORGETTABLE VIBE</span>
-              </div>
+              <div><span className="text-4xl text-gold font-serif block mb-1"><Counter target={4} suffix="+" /></span><span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">DELUXE SUITES</span></div>
+              <div><span className="text-4xl text-gold font-serif block mb-1"><Counter target={100} suffix="%" /></span><span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNBIASED PRIVACY</span></div>
+              <div><span className="text-4xl text-gold font-serif block mb-1">24/7</span><span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">BUTLER HOSPITALITY</span></div>
+              <div><span className="text-4xl text-gold font-serif block mb-1">∞</span><span className="block text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">UNFORGETTABLE VIBE</span></div>
             </div>
           </motion.div>
         </div>
@@ -213,18 +168,9 @@ export default function App() {
             <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-4">ULTRA-CUSTOM FEATURES</span>
             <h2 className="font-serif text-4xl md:text-5xl font-light text-white mb-16">World-Class <span className="italic text-gold text-glow">Services</span></h2>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
             {amenitiesList.map((amenity, idx) => (
-              <motion.div
-                key={amenity.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => setSelectedAmenityDetail(amenity)}
-                className="relative aspect-[1/1.1] overflow-hidden bg-luxury-dark border border-gold/10 group cursor-pointer flex flex-col justify-end p-8 text-left"
-              >
+              <motion.div key={amenity.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }} onClick={() => setSelectedAmenityDetail(amenity)} className="relative aspect-[1/1.1] overflow-hidden bg-luxury-dark border border-gold/10 group cursor-pointer flex flex-col justify-end p-8 text-left">
                 <img src={amenity.image} className="absolute inset-0 w-full h-full object-cover opacity-35 transition-all duration-700 group-hover:opacity-55 group-hover:scale-105" alt={amenity.name} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040a06] via-transparent to-transparent z-10" />
                 <div className="relative z-20">
@@ -249,26 +195,93 @@ export default function App() {
         </div>
       </section>
 
-      {/* See the Beauty Section */}
-      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="captured-moments">
+      {/* AI Celebrations Architect Section */}
+      <section id="architect" className="relative py-24 bg-[#050b07] z-10 border-t border-gold/10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="text-gold tracking-[0.4em] uppercase text-[10px] mb-4 block font-bold">THE ALCHEMIST OF EVENTS</span>
+              <h2 className="font-serif text-4xl md:text-6xl text-white mb-8 leading-tight">AI Celebrations <span className="italic text-gold text-glow">Architect</span></h2>
+              <p className="text-white/60 text-base font-light leading-relaxed mb-10 max-w-lg">
+                Planning a gathering? Our resident AI Architect crafts bespoke themes and curates gourmet menus perfectly tailored to the intimacy of your event at DG Green Farms.
+              </p>
+              <form onSubmit={handleArchitect} className="space-y-6 max-w-md">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-gold uppercase text-[9px] tracking-widest font-bold">GUEST COUNT</Label>
+                    <Input type="number" value={guestCount} onChange={(e) => setGuestCount(Number(e.target.value))} className="bg-[#0a1410] border-gold/20 text-white h-12 focus:border-gold transition-colors" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-gold uppercase text-[9px] tracking-widest font-bold">EVENT NATURE</Label>
+                    <Select value={eventType} onValueChange={setEventType}>
+                      <SelectTrigger className="bg-[#0a1410] border-gold/20 text-white h-12">
+                        <SelectValue placeholder="Select type" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#0a1410] border-gold/20 text-white">
+                        {['birthday party', 'corporate retreat', 'wedding anniversary', 'family reunion', 'romantic getaway'].map(t => (
+                          <SelectItem key={t} value={t} className="capitalize hover:bg-gold/10">{t}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Button disabled={loading} className="w-full bg-gold text-luxury-dark hover:bg-gold-light h-14 tracking-widest uppercase text-[10px] font-bold shadow-xl">
+                  {loading ? <Loader2 className="animate-spin mr-2" /> : <Sparkles className="mr-2" size={16} />}
+                  Architect My Celebration
+                </Button>
+              </form>
+            </div>
+            <div className="min-h-[400px] flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {!aiResult && !loading && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center p-12 border border-dashed border-gold/20 rounded-none flex flex-col items-center">
+                    <CalendarHeart className="text-gold/20 mb-6" size={80} strokeWidth={0.5} />
+                    <p className="text-white/40 font-light text-sm italic">Enter your details to generate <br/> a personalized event proposal.</p>
+                  </motion.div>
+                )}
+                {loading && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center">
+                    <Loader2 className="text-gold animate-spin mb-4" size={48} />
+                    <p className="text-gold tracking-widest uppercase text-[9px] font-bold">Architecting Excellence...</p>
+                  </motion.div>
+                )}
+                {aiResult && !loading && (
+                  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="w-full">
+                    <Card className="bg-[#0a1410] border-gold/20 rounded-none shadow-2xl overflow-hidden">
+                      <CardHeader className="border-b border-gold/10 pb-6">
+                        <CardTitle className="font-serif text-gold text-2xl italic">Your Curated Proposal</CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-8 space-y-8">
+                        <div>
+                          <h4 className="text-[9px] tracking-[0.3em] uppercase text-gold font-bold mb-3">EVENT THEME</h4>
+                          <p className="text-white text-base font-light leading-relaxed">{aiResult.eventTheme}</p>
+                        </div>
+                        <div>
+                          <h4 className="text-[9px] tracking-[0.3em] uppercase text-gold font-bold mb-3">GOURMET DINNER MENU</h4>
+                          <div className="whitespace-pre-line text-white/60 font-light text-sm italic border-l border-gold/20 pl-6 py-2">
+                            {aiResult.dinnerMenu}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Captured Moments Section */}
+      <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">CAPTURED MOMENTS</span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">See the <span className="italic text-gold text-glow">Beauty</span></h2>
         </div>
-        
         <div className="relative w-full overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#040906] to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#040906] to-transparent z-20 pointer-events-none" />
-
-          <motion.div 
-            className="flex gap-6 w-max"
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{
-              ease: "linear",
-              duration: 40,
-              repeat: Infinity
-            }}
-          >
+          <motion.div className="flex gap-6 w-max" animate={{ x: ["-50%", "0%"] }} transition={{ ease: "linear", duration: 40, repeat: Infinity }}>
             {[...scrollingImages, ...scrollingImages].map((img, idx) => (
               <div key={idx} className="relative w-[300px] md:w-[450px] aspect-[4/5] bg-luxury-dark border border-gold/15 overflow-hidden group">
                 <img src={img.src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={img.title} />
@@ -283,223 +296,69 @@ export default function App() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="relative py-24 bg-[#050b07] z-10 border-t border-gold/10" id="testimonials">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-4">
-              GUEST CHRONICLES
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">
-              Words of Our <span className="italic text-gold text-glow">Patrons</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {reviewsList.map((rev, index) => (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                key={rev.id}
-                className="p-10 border border-gold/15 bg-[#0a1410] text-left flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex gap-1 text-gold mb-8">
-                    {Array.from({ length: rev.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <p className="font-serif italic text-white/90 text-base leading-relaxed mb-10">
-                    "{rev.text}"
-                  </p>
-                </div>
-                <div className="flex items-center gap-5 pt-8 border-t border-gold/10">
-                  <div className="w-12 h-12 border border-gold/30 flex items-center justify-center bg-gold/5 font-sans font-bold text-xs text-gold">
-                    {rev.authorInitials}
-                  </div>
-                  <div>
-                    <span className="font-sans font-bold text-sm text-white block mb-0.5">
-                      {rev.author}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-widest text-white/40 block">
-                      {rev.stayType}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Visual Sanctuary Section with CircularGallery */}
+      {/* Visual Sanctuary Section */}
       <section className="relative py-24 bg-[#040906] z-10 border-t border-gold/10 overflow-hidden" id="gallery-section">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left">
           <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-semibold block mb-3">Visual Sanctuary</span>
           <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">A Glimpse into <span className="italic text-gold text-glow">Pure Seclusion</span></h2>
-          <p className="mt-4 text-white/50 text-xs md:text-sm font-light max-w-2xl leading-relaxed">
-            Experience the visual serenity of DG Green Farms Indore. Every frame captures the exquisite synergy between high-end architectural craft and breathtaking organic natural settings.
-          </p>
         </div>
-        
         <div className="relative w-full h-[600px] md:h-[800px]">
-          <CircularGallery
-            items={visualSanctuaryItems}
-            bend={3}
-            textColor="#c9a84c"
-            borderRadius={0.02}
-            scrollEase={0.03}
-            font="italic 20px Cormorant Garamond"
-          />
+          <CircularGallery items={visualSanctuaryItems} bend={3} textColor="#c9a84c" borderRadius={0.02} scrollEase={0.03} font="italic 20px Cormorant Garamond" />
         </div>
       </section>
 
-      {/* Estate Blueprints Section */}
+      {/* Estate Specifications Section */}
       <section className="relative py-24 bg-[#0a140f] z-10 border-t border-gold/10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-bold block mb-4">ESTATE BLUEPRINTS & CONVENIENCES</span>
-              <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">
-                Verified Estate <span className="italic text-gold text-glow">Specifications</span>
-              </h2>
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-sans font-bold block mb-4">ESTATE BLUEPRINTS</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">Verified Estate <span className="italic text-gold text-glow">Specifications</span></h2>
             </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center gap-2.5 px-5 py-3 border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm"
-            >
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex items-center gap-2.5 px-5 py-3 border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm">
               <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span className="text-[9px] tracking-[0.2em] uppercase text-white/80 font-bold font-sans">GOOGLE MAPS VERIFIED PROPERTY</span>
+              <span className="text-[9px] tracking-[0.2em] uppercase text-white/80 font-bold font-sans">GOOGLE MAPS VERIFIED</span>
             </motion.div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
             {/* Card 1 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              className="relative overflow-hidden group"
-            >
-              <GlareHover
-                width="100%"
-                height="100%"
-                background="rgba(6, 14, 10, 0.6)"
-                borderColor="rgba(201, 168, 76, 0.1)"
-                borderRadius="0px"
-                glareColor="#c9a84c"
-                glareOpacity={0.2}
-                className="!block p-10 h-full border border-gold/10 hover:border-gold/30 transition-all duration-500"
-              >
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8 }} className="relative overflow-hidden group">
+              <GlareHover width="100%" height="100%" background="rgba(6, 14, 10, 0.6)" borderColor="rgba(201, 168, 76, 0.1)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.2} className="!block p-10 h-full border border-gold/10 hover:border-gold/30">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-blue-600/20 border border-blue-600/40 flex items-center justify-center">
-                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"></path><path d="M11 11.5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"></path><path d="M15 11.5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"></path><path d="M12 16c1.5 0 3-.5 3.5-1.5"></path></svg>
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-lg text-white">Property Accessibility</h4>
-                    <span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold font-sans">INCLUSIVE DESIGN</span>
-                  </div>
+                  <div className="w-12 h-12 bg-blue-600/20 border border-blue-600/40 flex items-center justify-center"><Waves className="w-5 h-5 text-blue-500" /></div>
+                  <div><h4 className="font-serif text-lg text-white">Accessibility</h4><span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">INCLUSIVE DESIGN</span></div>
                 </div>
                 <motion.ul variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
-                  {["Assistive hearing loop installed", "Wheelchair-accessible entrance", "Wheelchair-accessible car park", "Seating & restrooms accessible"].map((item, i) => (
-                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
-                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                      <span>{item}</span>
-                    </motion.li>
+                  {["Wheelchair-accessible entrance", "Wheelchair-accessible car park", "Seating & restrooms accessible"].map((item, i) => (
+                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
                   ))}
                 </motion.ul>
               </GlareHover>
             </motion.div>
-
             {/* Card 2 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              transition={{ delay: 0.1 }}
-              className="relative overflow-hidden group"
-            >
-              <GlareHover
-                width="100%"
-                height="100%"
-                background="rgba(6, 14, 10, 0.6)"
-                borderColor="rgba(201, 168, 76, 0.1)"
-                borderRadius="0px"
-                glareColor="#c9a84c"
-                glareOpacity={0.2}
-                className="!block p-10 h-full border border-gold/10 hover:border-gold/30 transition-all duration-500"
-              >
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8 }} transition={{ delay: 0.1 }} className="relative overflow-hidden group">
+              <GlareHover width="100%" height="100%" background="rgba(6, 14, 10, 0.6)" borderColor="rgba(201, 168, 76, 0.1)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.2} className="!block p-10 h-full border border-gold/10 hover:border-gold/30">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-red-600/20 border border-red-600/40 flex items-center justify-center">
-                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500"><rect width="16" height="10" x="4" y="9" rx="2"></rect><path d="M9 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M15 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M7 9V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4"></path></svg>
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-lg text-white">Parking & Valet</h4>
-                    <span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold font-sans">SEAMLESS INGRESS</span>
-                  </div>
+                  <div className="w-12 h-12 bg-red-600/20 border border-red-600/40 flex items-center justify-center"><Users className="w-5 h-5 text-red-500" /></div>
+                  <div><h4 className="font-serif text-lg text-white">Parking & Valet</h4><span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">SEAMLESS INGRESS</span></div>
                 </div>
                 <motion.ul variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
-                  {["Free on-site parking garage", "Secure parking lot inside gates", "Free spacious street parking", "Fully gated 24/7 private security"].map((item, i) => (
-                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
-                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                      <span>{item}</span>
-                    </motion.li>
+                  {["Free on-site parking garage", "Secure parking lot inside", "Fully gated 24/7 security"].map((item, i) => (
+                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
                   ))}
                 </motion.ul>
               </GlareHover>
             </motion.div>
-
             {/* Card 3 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              transition={{ delay: 0.2 }}
-              className="relative overflow-hidden group"
-            >
-              <GlareHover
-                width="100%"
-                height="100%"
-                background="rgba(6, 14, 10, 0.6)"
-                borderColor="rgba(201, 168, 76, 0.1)"
-                borderRadius="0px"
-                glareColor="#c9a84c"
-                glareOpacity={0.2}
-                className="!block p-10 h-full border border-gold/10 hover:border-gold/30 transition-all duration-500"
-              >
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8 }} transition={{ delay: 0.2 }} className="relative overflow-hidden group">
+              <GlareHover width="100%" height="100%" background="rgba(6, 14, 10, 0.6)" borderColor="rgba(201, 168, 76, 0.1)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.2} className="!block p-10 h-full border border-gold/10 hover:border-gold/30">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-orange-600/20 border border-orange-600/40 flex items-center justify-center text-orange-500">
-                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="4" r="2"></circle><circle cx="18" cy="8" r="2"></circle><circle cx="20" cy="16" r="2"></circle><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-7 0V15a5 5 0 0 1 2-5Z"></path><path d="M15 10c0 .3.03.6.08.9"></path></svg>
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-lg text-white">Pet & Garden Policy</h4>
-                    <span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold font-sans">LUSH OPEN SPACES</span>
-                  </div>
+                  <div className="w-12 h-12 bg-orange-600/20 border border-orange-600/40 flex items-center justify-center"><Flame className="w-5 h-5 text-orange-500" /></div>
+                  <div><h4 className="font-serif text-lg text-white">Pet & Garden</h4><span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">LUSH OPEN SPACES</span></div>
                 </div>
                 <motion.ul variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
-                  {["Dogs allowed inside villa spaces", "Vast organic garden lawns & Gazebo", "Spacious layouts for night walks", "Perfect for celebrations & gatherings"].map((item, i) => (
-                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans">
-                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                      <span>{item}</span>
-                    </motion.li>
+                  {["Dogs allowed inside villa spaces", "Vast organic garden lawns", "Perfect for celebrations"].map((item, i) => (
+                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
                   ))}
                 </motion.ul>
               </GlareHover>
@@ -508,93 +367,40 @@ export default function App() {
         </div>
       </section>
 
-      {/* Reserve Escape Section */}
+      {/* Booking Section */}
       <section className="relative py-24 bg-[#060e0a] z-10 border-t border-gold/10 overflow-hidden" id="booking">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(201,168,76,0.15),transparent_70%)] pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 md:px-12 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
-            <div className="gold-line-split mb-6">
-              <span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">RESERVE ESCAPE</span>
-            </div>
-            <h2 className="font-serif text-5xl md:text-7xl font-light text-white leading-tight mb-8">
-              Begin Your <br />
-              <span className="italic text-gold text-glow">Luxury Journey</span>
-            </h2>
+            <div className="gold-line-split mb-6"><span className="text-[10px] tracking-[0.4em] uppercase text-gold font-sans font-bold">RESERVE ESCAPE</span></div>
+            <h2 className="font-serif text-5xl md:text-7xl font-light text-white leading-tight mb-8">Begin Your <br /> <span className="italic text-gold text-glow">Luxury Journey</span></h2>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            {/* Direct Reservations Card with GlareHover */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }}
-              className="h-full group"
-            >
-              <GlareHover
-                width="100%"
-                height="100%"
-                background="#0a1410"
-                borderColor="rgba(201, 168, 76, 0.15)"
-                borderRadius="0px"
-                glareColor="#c9a84c"
-                glareOpacity={0.15}
-                className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30 transition-all duration-500"
-              >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="h-full group">
+              <GlareHover width="100%" height="100%" background="#0a1410" borderColor="rgba(201, 168, 76, 0.15)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.15} className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30">
                 <div className="flex flex-col justify-between h-full w-full text-left">
                   <div>
-                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">DIRECT RESERVATIONS</h4>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6">DIRECT RESERVATIONS</h4>
                     <div className="flex items-center gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
-                      <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark">
-                        <Phone className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">IMMEDIATE HOTLINE</span>
-                        <span className="text-lg font-bold text-white font-serif">+91 99772 20204</span>
-                      </div>
+                      <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark"><Phone className="w-5 h-5" /></div>
+                      <div><span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1">HOTLINE</span><span className="text-lg font-bold text-white font-serif">+91 99772 20204</span></div>
                     </div>
                   </div>
-                  <button onClick={() => handleWhatsAppContact()} className="w-full py-5 bg-gold text-luxury-dark text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold-light transition-all duration-300 font-sans shadow-lg">
-                    BOOK VIA WHATSAPP
-                  </button>
+                  <button onClick={() => handleWhatsAppContact()} className="w-full py-5 bg-gold text-luxury-dark text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold-light transition-all">BOOK VIA WHATSAPP</button>
                 </div>
               </GlareHover>
             </motion.div>
-
-            {/* Estate Coordinates Card with GlareHover */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }}
-              className="h-full group"
-            >
-              <GlareHover
-                width="100%"
-                height="100%"
-                background="#0a1410"
-                borderColor="rgba(201, 168, 76, 0.15)"
-                borderRadius="0px"
-                glareColor="#c9a84c"
-                glareOpacity={0.15}
-                className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30 transition-all duration-500"
-              >
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="h-full group">
+              <GlareHover width="100%" height="100%" background="#0a1410" borderColor="rgba(201, 168, 76, 0.15)" borderRadius="0px" glareColor="#c9a84c" glareOpacity={0.15} className="!block p-10 md:p-12 h-full border border-gold/15 hover:border-gold/30">
                 <div className="flex flex-col justify-between h-full w-full text-left">
                   <div>
-                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6 font-sans">ESTATE COORDINATES</h4>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-6">ESTATE COORDINATES</h4>
                     <div className="flex items-start gap-5 p-5 border border-gold/10 bg-gold/5 mb-10">
-                      <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark shrink-0">
-                        <MapPin className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1 font-sans">RESORT LOCATION ADDRESS</span>
-                        <span className="text-xs md:text-sm text-white/80 leading-relaxed font-light font-sans">
-                          69, 70, Parsvnath City, Satwik Green, Manglaya Sadak, Rahu Khedi, Indore, MP 453771
-                        </span>
-                      </div>
+                      <div className="w-12 h-12 flex items-center justify-center border border-gold/20 text-gold bg-luxury-dark shrink-0"><MapPin className="w-5 h-5" /></div>
+                      <div><span className="text-[8px] tracking-widest uppercase text-white/30 block mb-1">LOCATION</span><span className="text-xs text-white/80 leading-relaxed">69, 70, Parsvnath City, Satwik Green, Manglaya Sadak, Indore</span></div>
                     </div>
                   </div>
-                  <a href="https://www.google.com/maps/search/?api=1&query=DG+Green+Farms+–+Perfect+Destination+for+Parties+%26+Gatherings+in+Indore" target="_blank" rel="noopener noreferrer" className="w-full py-5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all duration-300 font-sans text-center shadow-lg">
-                    GET ROUTE DIRECTIONS
-                  </a>
+                  <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" className="w-full py-5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-bold hover:bg-gold hover:text-luxury-dark transition-all text-center">GET DIRECTIONS</a>
                 </div>
               </GlareHover>
             </motion.div>
@@ -603,50 +409,33 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="relative bg-[#060e0a] border-t border-gold/15 pt-20 pb-12 z-10 text-left overflow-hidden">
+      <footer className="relative bg-[#060e0a] border-t border-gold/15 pt-20 pb-12 z-10 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
-          <Threads
-            color={[0.788, 0.659, 0.298]}
-            amplitude={1.2}
-            distance={0.1}
-            enableMouseInteraction={true}
-          />
+          <Threads color={[0.788, 0.659, 0.298]} amplitude={1.2} distance={0.1} enableMouseInteraction={true} />
         </div>
-        
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
             <div className="col-span-1 md:col-span-1 space-y-6">
               <div className="flex items-center gap-3">
                 <img src="https://res.cloudinary.com/dhc0phwyg/image/upload/v1780920463/LOGO_i9h4ex.jpg" className="w-12 h-12 rounded-full border border-gold/30" alt="Logo" />
-                <div className="font-serif text-xl md:text-2xl tracking-wider text-gold hover:text-gold-light transition-colors duration-300 uppercase flex items-center">
-                  <GlitchText speed={0.8} className="font-serif">DG GREEN FARMS</GlitchText>
-                </div>
+                <div className="font-serif text-xl md:text-2xl tracking-wider text-gold uppercase"><GlitchText speed={0.8}>DG GREEN FARMS</GlitchText></div>
               </div>
-              <p className="text-white/50 text-[11px] max-w-sm leading-relaxed font-light font-sans">
-                Indore's premiere boutique resort. Orchestrating private luxury stays and authentic farm culinary retreats.
-              </p>
+              <p className="text-white/50 text-[11px] max-w-sm leading-relaxed font-light">Indore's premiere boutique resort. Orchestrating private luxury stays and authentic farm retreats.</p>
               <div className="flex gap-4 pt-2">
-                <a href="https://wa.me/919977220204" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold hover:bg-gold/5 rounded-full transition-all duration-300">
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.008.01C5.397.01.06 5.348.06 12.012c0 2.097.546 4.142 1.587 5.946L.057 24l6.302-1.654c1.751.953 3.719 1.454 5.724 1.455 6.613 0 11.949-5.34 11.953-11.997.002-3.204-1.243-6.216-3.505-8.484C20.272 1.256 17.21.011 12.008.011zM12 21.99c-1.89 0-3.743-.507-5.362-1.467l-.384-.228-3.985 1.045 1.063-3.89-.25-.398C2.106 15.434 1.58 13.565 1.58 11.66c0-5.75 4.678-10.428 10.43-10.428 2.784 0 5.4.108 7.387 2.098 1.986 1.99 3.082 4.637 3.08 7.42-.005 5.752-4.685 10.43-10.43 10.43zm5.72-7.85c-.3-.15-1.776-.875-2.05-.975-.276-.1-.477-.15-.678.15-.2.3-.778.975-.953 1.175-.176.2-.352.225-.653.075-.3-.15-1.27-.467-2.42-1.493-.89-.795-1.494-1.78-1.67-2.08-.175-.3-.02-.463.13-.614.137-.135.303-.35.454-.525.15-.175.202-.303.303-.503.1-.2.05-.378-.025-.528-.076-.15-.678-1.636-.93-2.247-.245-.59-.496-.51-.678-.52-.18-.01-.387-.01-.593-.01-.2 0-.528.075-.804.377-.277.3-1.055 1.03-1.055 2.513s1.08 2.916 1.23 3.117c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.63.73.23 1.4.2 1.92.12.58-.087 1.776-.726 2.027-1.4.25-.675.25-1.25.176-1.375-.075-.125-.276-.225-.578-.376z"/>
-                  </svg>
-                </a>
-                <a href="https://www.instagram.com/dggreenfarms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold hover:bg-gold/5 rounded-full transition-all duration-300">
-                  <Instagram className="w-5 h-5" />
-                </a>
+                <a href="https://wa.me/919977220204" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/60 hover:text-gold hover:border-gold transition-all rounded-full"><Instagram className="w-5 h-5" /></a>
               </div>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8 font-sans">EXPLORE STAY</h4>
-              <ul className="space-y-4 text-xs text-white/60 font-light font-sans">
+              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8">EXPLORE STAY</h4>
+              <ul className="space-y-4 text-xs text-white/60 font-light list-none p-0">
                 <li><a href="#about" className="hover:text-gold transition-colors">The Farmhouse Story</a></li>
                 <li><a href="#amenities" className="hover:text-gold transition-colors">Bespoke Amenities</a></li>
                 <li><a href="#gallery-section" className="hover:text-gold transition-colors">Private Gallery</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8 font-sans">STAY INQUIRIES</h4>
-              <ul className="space-y-4 text-xs text-white/60 font-light font-sans">
+              <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8">STAY INQUIRIES</h4>
+              <ul className="space-y-4 text-xs text-white/60 font-light list-none p-0">
                 <li><button onClick={() => handleWhatsAppContact()} className="hover:text-gold transition-colors">Luxurious Day Outing</button></li>
                 <li><button onClick={() => handleWhatsAppContact()} className="hover:text-gold transition-colors">Overnight Sanctuary</button></li>
                 <li><button onClick={() => handleWhatsAppContact()} className="hover:text-gold transition-colors">Romantic Oasis</button></li>
@@ -654,21 +443,12 @@ export default function App() {
             </div>
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold font-bold mb-8 font-sans">INQUIRIES</h4>
-              <div className="space-y-4">
-                <div>
-                  <span className="text-[8px] uppercase tracking-widest text-white/30 block mb-1 font-sans">ENQUIRE MANAGER</span>
-                  <span className="text-sm font-bold text-white font-sans">+91 99772 20204</span>
-                </div>
-              </div>
+              <div><span className="text-[8px] uppercase tracking-widest text-white/30 block mb-1">ENQUIRE MANAGER</span><span className="text-sm font-bold text-white">+91 99772 20204</span></div>
             </div>
           </div>
-          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-[10px] text-white/40 uppercase tracking-widest font-sans">
-              &copy; {new Date().getFullYear()} DG GREEN FARMS. ALL RIGHTS RESERVED.
-            </div>
-            <div className="text-[10px] text-gold uppercase tracking-widest font-sans font-medium">
-              Website developed by SAUMYA BARI
-            </div>
+          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-white/40 uppercase tracking-widest">
+            <div>&copy; {new Date().getFullYear()} DG GREEN FARMS. ALL RIGHTS RESERVED.</div>
+            <div className="text-gold font-medium mt-4 md:mt-0">Website developed by SAUMYA BARI</div>
           </div>
         </div>
       </footer>
@@ -678,21 +458,12 @@ export default function App() {
         {selectedAmenityDetail && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/85 backdrop-blur-sm z-[9999] flex items-center justify-center p-4" onClick={() => setSelectedAmenityDetail(null)}>
             <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="bg-[#0a1410] border border-gold/30 p-8 md:p-10 w-full max-w-lg relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setSelectedAmenityDetail(null)} className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors">
-                <X className="w-5 h-5" />
-              </button>
-              <div className="flex items-center gap-2 mb-6">
-                <Sparkles className="w-4 h-4 text-gold" />
-                <span className="text-[10px] tracking-[0.25em] uppercase text-gold font-sans font-bold">CUSTOMIZE RETREAT</span>
-              </div>
+              <button onClick={() => setSelectedAmenityDetail(null)} className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
+              <div className="flex items-center gap-2 mb-6"><Sparkles className="w-4 h-4 text-gold" /><span className="text-[10px] tracking-[0.25em] uppercase text-gold font-sans font-bold">CUSTOMIZE RETREAT</span></div>
               <h2 className="font-serif text-3xl text-white mb-2">{selectedAmenityDetail.name}</h2>
               <p className="text-[10px] tracking-[0.2em] uppercase text-[#1aa87a] font-sans font-bold mb-8">{selectedAmenityDetail.tagline}</p>
               <p className="text-white/80 font-sans text-sm leading-relaxed mb-10">{selectedAmenityDetail.description}</p>
-              <div className="flex flex-col gap-3">
-                <button onClick={() => handleWhatsAppContact(`Inquiry: ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark font-sans text-[10px] tracking-[0.15em] font-bold uppercase hover:bg-gold-light transition-colors">
-                  ENQUIRE VIA WHATSAPP
-                </button>
-              </div>
+              <button onClick={() => handleWhatsAppContact(`Inquiry: ${selectedAmenityDetail.name}`)} className="w-full py-4 bg-gold text-luxury-dark font-sans text-[10px] tracking-[0.15em] font-bold uppercase hover:bg-gold-light transition-colors">ENQUIRE VIA WHATSAPP</button>
             </motion.div>
           </motion.div>
         )}
