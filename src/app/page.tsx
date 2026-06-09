@@ -71,26 +71,6 @@ export default function App() {
     { image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", text: "Luxe Pool View" }
   ];
 
-  const scrollingImages = [
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004639/t3_hp3s6m.jpg", title: "Repose Swing Sanctuary", category: "GARDEN SWING REPRIEVES" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg", title: "Surprise Romantic Decor", category: "BESPOKE ANNIVERSARIES" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t5_oyvkbx.jpg", title: "Bespoke Celebration Lawns", category: "ESTATE GROUNDS" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg", title: "Midnight Jacuzzi Glow", category: "NIGHT EXPERIENCE" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004637/t6_yf6uq3.jpg", title: "Heated Wellness Haven", category: "SPA & WELLNESS" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg", title: "Twilight Pool Ambience", category: "MASTER ESTATE SECTION" },
-    { src: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg", title: "Poolside Organic Dining", category: "CULINARY EXPERIENCE" }
-  ];
-
-  const listContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-  };
-
-  const listItemVariants = {
-    hidden: { opacity: 0, x: -15 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-  };
-
   return (
     <main className="relative min-h-screen bg-luxury-dark text-white selection:bg-gold/30 overflow-x-hidden">
       <CustomCursor />
@@ -202,9 +182,9 @@ export default function App() {
                   <div className="w-12 h-12 bg-blue-600/20 border border-blue-600/40 flex items-center justify-center"><Waves className="w-5 h-5 text-blue-500" /></div>
                   <div><h4 className="font-serif text-lg text-white">Accessibility</h4><span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">INCLUSIVE DESIGN</span></div>
                 </div>
-                <motion.ul variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
+                <motion.ul variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
                   {["Wheelchair-accessible entrance", "Wheelchair-accessible car park", "Seating & restrooms accessible"].map((item, i) => (
-                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
+                    <motion.li key={i} variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
                   ))}
                 </motion.ul>
               </GlareHover>
@@ -215,9 +195,9 @@ export default function App() {
                   <div className="w-12 h-12 bg-red-600/20 border border-red-600/40 flex items-center justify-center"><Users className="w-5 h-5 text-red-500" /></div>
                   <div><h4 className="font-serif text-lg text-white">Parking & Valet</h4><span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">SEAMLESS INGRESS</span></div>
                 </div>
-                <motion.ul variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
+                <motion.ul variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
                   {["Free on-site parking garage", "Secure parking lot inside", "Fully gated 24/7 security"].map((item, i) => (
-                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
+                    <motion.li key={i} variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
                   ))}
                 </motion.ul>
               </GlareHover>
@@ -228,9 +208,9 @@ export default function App() {
                   <div className="w-12 h-12 bg-orange-600/20 border border-orange-600/40 flex items-center justify-center"><Flame className="w-5 h-5 text-orange-500" /></div>
                   <div><h4 className="font-serif text-lg text-white">Pet & Garden</h4><span className="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">LUSH OPEN SPACES</span></div>
                 </div>
-                <motion.ul variants={listContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
+                <motion.ul variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
                   {["Dogs allowed inside villa spaces", "Vast organic garden lawns", "Perfect for celebrations"].map((item, i) => (
-                    <motion.li key={i} variants={listItemVariants} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
+                    <motion.li key={i} variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }} className="flex items-center gap-3 text-xs text-white/70 font-light font-sans"><Check className="w-4 h-4 text-emerald-500 shrink-0" /><span>{item}</span></motion.li>
                   ))}
                 </motion.ul>
               </GlareHover>
