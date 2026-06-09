@@ -5,26 +5,30 @@
 
 @layer base {
   :root {
-    --background: 144 22% 8%;
+    --background: 144 22% 4%;
     --foreground: 0 0% 98%;
-    --card: 144 25% 12%;
+    --card: 144 25% 10%;
     --card-foreground: 0 0% 98%;
-    --popover: 144 25% 10%;
+    --popover: 144 25% 8%;
     --popover-foreground: 0 0% 98%;
-    --primary: 49 53% 66%;
-    --primary-foreground: 144 22% 8%;
-    --secondary: 144 15% 18%;
-    --secondary-foreground: 49 53% 66%;
-    --muted: 144 15% 20%;
-    --muted-foreground: 144 10% 70%;
-    --accent: 12 44% 50%;
-    --accent-foreground: 0 0% 98%;
+    --primary: 49 53% 54%;
+    --primary-foreground: 144 22% 4%;
+    --secondary: 144 15% 12%;
+    --secondary-foreground: 49 53% 54%;
+    --muted: 144 15% 15%;
+    --muted-foreground: 144 10% 60%;
+    --accent: 49 53% 66%;
+    --accent-foreground: 144 22% 4%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 144 15% 20%;
-    --input: 144 15% 20%;
-    --ring: 49 53% 66%;
-    --radius: 0.75rem;
+    --border: 144 15% 15%;
+    --input: 144 15% 15%;
+    --ring: 49 53% 54%;
+    --radius: 0.5rem;
+    
+    --luxury-dark: #060e0a;
+    --gold: #c9a84c;
+    --gold-light: #e5c77e;
   }
 }
 
@@ -40,19 +44,14 @@
   }
 }
 
-.parallax-container {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.text-glow {
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
 }
 
-.luxury-glass {
-  background: rgba(16, 25, 20, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 195, 121, 0.1);
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-
-.gold-stroke {
-  stroke: #D4C379;
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
