@@ -37,7 +37,7 @@ export const amenitiesList: PropertyAmenity[] = [
     icon: "Waves",
     accentColor: "border-[#1aa87a]",
     svgRepresentation: "pool",
-    image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&h=600&auto=format&fit=crop"
+    image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t1_pwfa6e.jpg"
   },
   {
     id: "jacuzzi",
@@ -47,7 +47,7 @@ export const amenitiesList: PropertyAmenity[] = [
     icon: "Flame",
     accentColor: "border-[#8b40c0]",
     svgRepresentation: "jacuzzi",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbece8?q=80&w=800&h=600&auto=format&fit=crop"
+    image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t7_qwagru.jpg"
   },
   {
     id: "restaurant",
@@ -57,7 +57,7 @@ export const amenitiesList: PropertyAmenity[] = [
     icon: "Utensils",
     accentColor: "border-[#c0540a]",
     svgRepresentation: "restaurant",
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&h=600&auto=format&fit=crop"
+    image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004634/t4_ozfpvj.jpg"
   },
   {
     id: "rooms",
@@ -67,7 +67,7 @@ export const amenitiesList: PropertyAmenity[] = [
     icon: "BedDouble",
     accentColor: "border-[#c9a84c]",
     svgRepresentation: "rooms",
-    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&h=600&auto=format&fit=crop"
+    image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t2_yoaycw.jpg"
   },
   {
     id: "romance",
@@ -77,7 +77,7 @@ export const amenitiesList: PropertyAmenity[] = [
     icon: "Heart",
     accentColor: "border-[#c0102a]",
     svgRepresentation: "romance",
-    image: "https://images.unsplash.com/photo-1522673607200-164883eecd0c?q=80&w=800&h=600&auto=format&fit=crop"
+    image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004639/t3_hp3s6m.jpg"
   },
   {
     id: "groups",
@@ -87,7 +87,7 @@ export const amenitiesList: PropertyAmenity[] = [
     icon: "Users",
     accentColor: "border-[#2a8a28]",
     svgRepresentation: "groups",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&h=600&auto=format&fit=crop"
+    image: "https://res.cloudinary.com/dhc0phwyg/image/upload/v1781004638/t5_oyvkbx.jpg"
   }
 ];
 
